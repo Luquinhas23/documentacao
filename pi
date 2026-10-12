@@ -1,0 +1,236 @@
+
+
+
+
+
+
+
+
+Tecnologia na gestão de pequenos mercados: Análise de processos e proposta de um sistema de apoio à gestão
+
+
+
+
+
+
+
+
+
+
+
+
+São Paulo - SP
+2026
+UNIVERSIDADE VIRTUAL DO ESTADO DE SÃO PAULO
+
+
+
+
+
+
+
+
+
+
+
+Tecnologia na gestão de pequenos mercados: Análise de processos e proposta de um sistema de apoio à gestão
+
+
+
+
+
+
+
+Relatório Técnico-Científico apresentado na disciplina de Projeto Integrador II para o Eixo Computação da Universidade Virtual do Estado de São Paulo (UNIVESP),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+São Paulo - SP
+2026
+
+RESUMO
+Os microempreendimentos comerciais exercem função vital no abastecimento local, mas a gestão fundamentada na intuição e a inadequação de sistemas genéricos frequentemente limitam sua eficiência operacional, resultando em perdas financeiras por expiração de produtos e escassez nas gôndolas. Visando superar essas barreiras, o presente trabalho tem como objetivo analisar os processos internos de um minimercado familiar e propor o desenvolvimento de um Produto Viável Mínimo (MVP) web para apoiar o controle de validades e a reposição de mercadorias, assegurando agilidade no atendimento de balcão. A pesquisa fundamenta-se em uma metodologia de campo qualitativa, conduzida mediante entrevistas e observação direta do fluxo logístico, articulada aos preceitos da Engenharia de Software e à utilização de frameworks ágeis (Scrum) para o levantamento sistemático de requisitos. Os resultados preliminares englobam a estruturação de uma aplicação leve com interface minimalista, hospedada em nuvem e amparada por um banco de dados relacional, desenhada especificamente para alertar sobre vencimentos e otimizar o inventário sem gerar sobrecarga cognitiva aos operadores. Conclui-se, em suma, que a viabilidade da transição digital em negócios de pequeno porte depende da criação de ferramentas estritamente alinhadas às restrições de tempo dos usuários, comprovando que sistemas focados e ergonômicos são capazes de mitigar o erro humano, garantir a precisão dos dados operacionais e promover a sustentabilidade gerencial na economia de vizinhança.
+
+PALAVRAS-CHAVE: Varejo; Estoque; Sustentabilidade; Software; MVP.
+LISTA DE ILUSTRAÇÕES
+
+Figura 1 – Tela de cadastramento	16
+Figura 2 – Tela de registro dos itens escaneados	17
+Figura 3 – Tela de definição de preços e finalização da venda	18
+
+
+LISTAS DE TABELAS
+
+Tabela 1 - Matriz comparativa entre ferramentas de mercado e a solução proposta. 	20
+
+
+SUMÁRIO
+
+
+1. Introdução	7
+2. Desenvolvimento	8
+2.1 Objetivos	8
+2.1.1 Objetivo geral	8
+2.1.2 Objetivo específicos	8
+2.2 Justificativa e delimitação do problema	9
+2.3 Fundamentação teórica	10
+2.4 Metodologia	12
+2.4.1 Ouvir e interpretar o contexto	12
+2.4.2 Perfil dos sujeitos participantes	12
+2.4.3 Coleta das informações iniciais	12
+2.4.4 Criar / Prototipar	13
+2.4.5 Implementar / Testar	14
+2.4.6 Melhorias futuras indicadas	14
+2.5 Resultados preliminares: Solução Inicial	14
+2.5.1 Benchmark de sistemas concorrentes e marcas similares	20
+2.5.2 Stacks tecnológicas para melhorias indicadas	21
+2.5.3 Mapeamento e definição de APIS	21
+2.5.4 Avaliação de APIS terceiras	22
+REFERÊNCIAS	23
+
+
+1. Introdução
+Este projeto tem como tema central a aplicação da tecnologia na gestão de pequenos mercados, abordando a análise de processos operacionais e a proposta de um sistema de apoio à reposição de mercadorias. O estudo explora a intersecção entre o desenvolvimento de soluções computacionais e o cotidiano do comércio de vizinhança, investigando como a informatização pode ser introduzida no contexto de microempreendimentos. Trata-se, portanto, de uma pesquisa direcionada à modernização de rotinas comerciais por meio de ferramentas digitais adaptadas à realidade do pequeno varejo.
+A partir desse escopo, a pesquisa levanta o problema da gestão estritamente manual, que gera ineficiências como o descarte de produtos vencidos e rupturas de gôndola. Para responder a isso, a ideia do projeto consiste em desenvolver uma aplicação web voltada ao controle preventivo de estoques. O foco direciona-se a superar a rejeição que pequenos comerciantes demonstram diante de sistemas genéricos e complexos. A investigação busca entender como uma ferramenta digital enxuta pode resolver dores prioritárias sem adicionar peso burocrático ao atendimento de balcão.
+No âmbito das abordagens tecnológicas o tema foca no desenvolvimento de soluções voltadas à Interação Humano-Computador e usabilidade. O projeto adota plataformas escaláveis para democratizar a transformação digital em locais com restrições de tempo e infraestrutura. O desafio central é abstrair a complexidade computacional, entregando uma interface fluida que garanta registros gerenciais seguros, imperceptíveis e acessíveis ao usuário.
+A principal motivação deste projeto é o apoio prático à comunidade externa, atuando diretamente na mitigação das dificuldades diárias que ameaçam a viabilidade de pequenos empreendimentos periféricos. Por meio da concepção de uma solução sem barreiras financeiras e alinhada à realidade do operador, pretende-se demonstrar que as ferramentas digitais podem atuar como verdadeiras aliadas na otimização do trabalho.
+O estudo foca em desenvolver e validar um Produto Viável Mínimo (MVP) web para suporte operacional. Analisa-se como a transição do controle físico para uma plataforma leve moderniza a verificação de validades e a reposição, viabilizando a gestão comercial com o menor atrito tecnológico.
+2. Desenvolvimento
+2.1 Objetivos
+2.1.1 Objetivo Geral
+Desenvolver, implementar e validar uma aplicação web enxuta destinada ao suporte operacional e à gestão simplificada de um minimercado familiar. A solução busca otimizar sistematicamente a verificação preventiva de prazos de validade e o controle contínuo da reposição de estoque nas gôndolas, eliminando falhas operacionais decorrentes de rotinas manuais e garantindo o menor atrito tecnológico e cognitivo possível para os operadores no cotidiano do comércio.
+2.1.2 Objetivos Específicos
+Para alcançar e consolidar o objetivo geral, definem-se as seguintes etapas do trabalho, rigorosamente estruturadas segundo a natureza das ações científicas, técnicas e operacionais a serem executadas:
+Etapa Exploratória: Mapear os processos vigentes de gerenciamento e movimentação de mercadorias no estabelecimento, identificando as principais rotinas informais, a dependência do controle por estimativa e memória, bem como os gargalos operacionais no fluxo diário de atendimento de balcão.
+Etapa Descritiva: Levantar, formalizar e caracterizar os requisitos funcionais, não funcionais e de usabilidade necessários para a concepção e prototipagem de uma interface responsiva, leve e intuitiva. A arquitetura da solução é projetada para adequar-se perfeitamente ao perfil de baixa maturidade digital dos operadores.
+Etapa Explicativa: Avaliar e mensurar empiricamente os impactos, ganhos de eficiência e benefícios operacionais resultantes da transição do controle manual para a plataforma web. Analisa-se a capacidade do sistema em mitigar o erro humano, reduzir o desperdício decorrente da expiração de validades e prevenir a ocorrência de rupturas de estoque na área de vendas, assegurando a viabilidade financeira do empreendimento.
+2.2 Justificativa e delimitação do problema 
+O setor varejista de pequeno porte, em especial o comércio de vizinhança familiar, desempenha um papel socioeconômico central no abastecimento comunitário e na geração de renda local. Contudo, a sustentabilidade operacional desses estabelecimentos comumente esbarra na carência de processos estruturados e na baixa adesão a ferramentas digitais. No cenário empírico delimitado por esta pesquisa, o Minimercado Gomeri, a administração é conduzida integralmente por dois colaboradores em revezamento contínuo. As operações diárias concentram-se no uso de controles manuais e registros descentralizados (como a calculadora de balcão com impressão térmica) e no controle de validade e reposição apoiado essencialmente em memória e estimativas.
+A tentativa prévia de implementação de um sistema informatizado no local revelou um fenômeno recorrente na microinformática aplicada ao varejo: a rejeição funcional da ferramenta. O software anteriormente adotado foi abandonado não por tecnofobia ou desinteresse gerencial, mas pelo atrito operacional introduzido por interfaces sobrecarregadas e rotinas burocráticas de baixa e cadastro de mercadorias, as quais tornavam o processo mais moroso e oneroso do que o método manual tradicional, além do ônus contínuo de mensalidades de manutenção. Essa sobrecarga é particularmente crítica em um ambiente com mão de obra reduzida, no qual o tempo e o esforço despendidos no atendimento direto ao cliente não comportam processos administrativos complexos.
+Diante dessa realidade, o problema central de pesquisa é delimitado pela seguinte questão norteadora:
+“Como conceber e implementar uma aplicação web de apoio à reposição de mercadorias e ao controle de validade que ofereça confiabilidade na gestão de dados sem impor atrito ou aumento no tempo das rotinas operacionais de um micromercado familiar?”
+A justificativa para a realização deste estudo desdobra-se em três dimensões principais:
+Relevância Social e Comunitária: Os pequenos comércios de bairro garantem capilaridade no acesso a bens básicos e fortalecem os laços de convivência local. A perda de mercadorias por expiração de prazo de validade e a ocorrência frequente de rupturas de estoque afetam a margem de lucro e a competitividade do negócio, podendo comprometer sua longevidade. Desenvolver uma ferramenta acessível, de baixa curva de aprendizagem e sem barreiras financeiras contribui diretamente para a inclusão digital e a resiliência de negócios periféricos e familiares.
+Relevância Técnica e Acadêmica: Do ponto de vista da Ciência da Computação e Tecnologia da Informação, o trabalho aborda o desafio de alinhar arquitetura de software (arquitetura modular em nuvem, consumo via APIs e persistência consistente em banco de dados) aos princípios de Interação Humano-Computador (IHC) e Acessibilidade (WCAG). Explora-se a criação de um Produto Viável Mínimo (MVP) altamente intuitivo para usuários com baixa maturidade digital, investigando como reduzir custos cognitivos e temporais na entrada de dados operacionais.
+Contribuição Prática para o Local do Estudo: A pesquisa entrega ao estabelecimento colaborador um sistema focado em suas dores prioritárias: substituição de estimativas por registros estruturados de validade, previsibilidade para reposições, mitigação de perdas financeiras por descarte e garantia de disponibilidade de produtos para a comunidade local, tudo isso preservando a agilidade exigida pela rotina de atendimento no balcão.
+
+2.3 Fundamentação teórica
+O comércio varejista de vizinhança desempenha papel primordial no abastecimento local e na dinâmica socioeconômica das comunidades. No entanto, a sobrevivência desses empreendimentos depende substancialmente da capacidade de estruturar processos internos básicos, em especial o controle de fluxo de mercadorias. Conforme aponta o SEBRAE (2020), falhas na gestão de estoques respondem por perdas severas de capital de giro em pequenos negócios, manifestando-se tanto na expiração de itens perecíveis quanto em rupturas de gôndola que frustram a demanda imediata do consumidor.
+Sob a perspectiva da logística integrada, o controle de armazenagem transcende a mera conferência física, configurando elemento estratégico de sustentação financeira. A literatura de suprimentos enfatiza que coordenar compras, níveis de reposição e prazos de validade evita desperdícios e preserva as margens operacionais do lojista (BALLOU, 2006). A eficácia desse processo reside no alinhamento contínuo entre o comportamento de consumo e os pedidos aos fornecedores, impedindo tanto o sobre-estoque quanto a escassez de produtos essenciais na área de vendas (CHING, 2010).
+A superação de rotinas manuais ou baseadas na memória exige o emprego racional de Sistemas de Informação Gerenciais (SIG). Como explicam Laudon e Laudon (2014), soluções computacionais devem mitigar a sobrecarga cognitiva dos operadores por meio da centralização segura de dados e da automação de registros rotineiros. Para microestabelecimentos, onde a equipe de atendimento é enxuta, sistemas excessivamente burocráticos ou com interfaces poluídas tendem ao abandono funcional; a tecnologia precisa, portanto, atuar como facilitadora da rotina de balcão, garantindo agilidade sem comprometer a integridade das informações operacionais.
+Nesse contexto, a Engenharia de Software fornece o arcabouço conceitual e metodológico indispensável para construir soluções verdadeiramente aderentes às restrições do ambiente de implantação. Sommerville (2019) reforça que o sucesso de um artefato tecnológico reside na compreensão profunda das reais condições e necessidades de seus usuários finais. Em termos arquiteturais, a opção por aplicações desacopladas, estruturadas em serviços web e integradas por interfaces de programação (APIs), assegura que interfaces leves em navegadores executem operações consistentes em servidores em nuvem, garantindo responsividade e baixo consumo de recursos locais (BASS; CLEMENTS; KAZMAN, 2021).
+O núcleo operacional desse tipo de sistema concentra-se no rastreamento confiável de entradas, lotes, vencimentos e baixas por venda. Acerca da confiabilidade da persistência de dados em ambientes transacionais, a literatura especializada define que:
+Um sistema de banco de dados é projetado para gerenciar grandes volumes de informação, garantindo a integridade, a segurança e a recuperação eficiente dos dados ao longo do tempo. Em aplicações comerciais, a modelagem relacional correta evita anomalias de inserção e exclusão, garantindo que as informações críticas sobre o inventário e as transações diárias reflitam com exatidão a realidade operacional do negócio, sem perdas ou inconsistências estruturais. (ELMASRI; NAVATHE, 2018, p. 55).
+Por fim, a transposição desses requisitos teóricos para um Produto Viável Mínimo (MVP) requer processos de desenvolvimento ágeis e iterativos. Conforme preconiza Rubin (2017), ciclos curtos de prototipação e entrega permitem incorporar com rapidez os feedbacks coletados junto ao usuário real, assegurando que o sistema final atenda com precisão às demandas do estabelecimento sem onerar o seu fluxo diário de trabalho.
+2.4 Metodologia
+A metodologia adotada neste projeto seguiu uma abordagem qualitativa e aplicada, estruturada em três etapas fundamentais: (1) ouvir e interpretar o contexto; (2) criar e prototipar; (3) implementar e testar. Cada etapa é detalhada a seguir:
+2.4.1. Ouvir e interpretar o contexto
+O presente estudo concentra-se no mapeamento e na análise das operações do Minimercado Gomeri, estabelecimento comercial de porte micro e caráter familiar situado no município de São Bernardo do Campo, em atividade há 22 anos. A organização dedica-se ao fornecimento de bens de consumo à comunidade do entorno, operando por meio de fluxos predominantemente manuais, nos quais o gerenciamento de vendas e a verificação do estoque fundamentam-se de forma empírica e estimativa.
+2.4.2. Perfil dos sujeitos participantes
+Durante a etapa de pesquisa de campo, foi realizada uma entrevista por meio de contato virtual com um único participante: o proprietário do estabelecimento. Embora tenha optado por não se identificar, o comerciante prestou uma contribuição valiosa ao detalhar sua rotina de trabalho, as atribuições diárias e a infraestrutura interna do minimercado.	
+
+2.4.3. Coleta das informações iniciais
+A coleta das informações iniciais revelou um panorama detalhado sobre a dinâmica operacional do Minimercado Gomeri, evidenciando uma estrutura caracterizada pela simplicidade e pela flexibilidade. O participante entrevistado relatou que a equipe de trabalho é composta por apenas dois colaboradores, ele próprio e mais um funcionário, operando em regime de revezamento contínuo para cobrir todo o horário de atendimento do estabelecimento. Em razão desse quadro funcional enxuto, não existe uma divisão formal de tarefas ou atribuições fixas; ambos realizam alternadamente o atendimento no balcão, o recebimento de mercadorias, a reposição das gôndolas e a organização geral da loja. No tocante à gestão de mercadorias, destacou-se a ausência de um inventário formalizado ou de um levantamento preciso da quantidade de produtos dispostos nas prateleiras e mantidos em estoque. As rotinas de controle e abastecimento operam prioritariamente com base em estimativas visuais, na percepção empírica da rotatividade dos itens e nas solicitações diretas manifestadas pelos clientes no cotidiano. A aquisição de novos produtos ocorre de forma reativa: ao identificar a demanda do público ou a falta iminente de determinado item, busca-se fornecedores que ofereçam condições favoráveis de preço e prazo de pagamento. Além disso, a contagem diária de fluxo de clientes e o volume exato de vendas diárias não são registrados de forma sistemática, o que reforça a dependência de processos manuais e informais e fundamenta a necessidade de soluções tecnológicas leves voltadas à prevenção de perdas por validade e à otimização da reposição.
+
+2.4.4. Criar / Prototipar
+Partindo da base da pesquisa de campo e da análise minuciosa da rotina operacional do Minimercado Gomeri, foram consolidadas as diretrizes e requisitos essenciais para o direcionamento e a concepção da aplicação :
+Interface simples e objetiva: Desenvolver uma navegação minimalista voltada a atender com precisão o perfil operacional dos usuários, que apresentam pouca familiaridade com sistemas digitais avançados e demandam agilidade sem ruídos visuais no atendimento diário.
+Entrada rápida de mercadorias e leitura de código de barras: Permitir a leitura ágil de produtos por meio da câmera de dispositivos móveis ou leitores físicos, reduzindo a necessidade de digitação manual e otimizando o fluxo de caixa.
+Controle preventivo de validade e reposição de estoque: Estruturar um mecanismo centralizado de alertas preventivos que substitua o controle empírico e de memória, mitigando perdas financeiras por expiração e prevenindo a ruptura nas gôndolas.
+Baixo custo de implantação e infraestrutura: Garantir o funcionamento contínuo via navegador em computadores ou smartphones já existentes no local, dispensando aquisição de hardwares dedicados ou custos frequentes de licenças.
+2.4.5. Implementar / Testar
+	Com o intuito de avaliar o protótipo desenvolvido, realizaram-se testes internos com uma amostragem diversificada de produtos. A seleção dos itens visou contemplar distintas variáveis e particularidades suscetíveis de impactar o processo de leitura do código de barras, a saber: variações dimensionais, composição de materiais, geometria das superfícies e posicionamento do código na embalagem.
+	No decorrer dos ensaios, constataram-se limitações decorrentes das especificidades físicas dos códigos que comprometeram a eficácia da leitura, ressaltando-se os códigos de dimensões reduzidas aplicados sobre superfícies curvas. Ademais, fatores ambientais não controlados, notadamente os níveis de iluminação, interferiram no rendimento do dispositivo.  Tanto a baixa luminosidade, quanto a iluminação intensa em materiais reflexivos, dificultaram o procedimento de leitura.
+2.4.6. Melhorias futuras indicadas
+	Em termos de aprimoramentos futuros, recomenda-se a incorporação de técnicas avançadas de processamento digital de imagens com vistas a mitigar as distorções geométricas de superfícies curvas, bem como otimizar a leitura em cenários de iluminação deficiente ou de reduzida dimensão de código. Como solução complementar, o protótipo possibilita a integração com leitores ópticos de código de barras dedicados, viabilizando o escaneamento quando os fatores ambientais para a câmera forem desfavoráveis ou conforme a preferência do operador, o que confere superior flexibilidade operacional ao sistema.
+2.5 Resultados preliminares: solução inicial 
+	Com base na entrevista conduzida com o proprietário do estabelecimento comercial selecionado para o estudo, o grupo identificou diversas oportunidades de intervenção e soluções tecnológicas capazes de otimizar e aprimorar as atividades operacionais diárias. A partir dos gargalos relatados pelo proprietário, aliados às análises prévias desenvolvidas pelo grupo, evidenciaram-se problemas recorrentes no gerenciamento de estoque, destacando-se as perdas decorrentes do vencimento de produtos e as ocorrências de ruptura de estoque.
+No contexto do Minimercado Gomeri, constatou-se uma iniciativa voltada à substituição gradual de processos manuais por soluções computadorizadas. Essa transição visa não apenas desonerar a rotina diária, mas também consolidar uma infraestrutura base que viabilize, futuramente, a implementação de funcionalidades mais especializadas, tais como o controle rigoroso de estoque e a gestão de prazos de validade. Diante do quadro operacional relatado pelo proprietário, caracterizado por elevada carga de trabalho, demandas intensas da rotina do comércio e limitações orçamentárias, definiram-se como requisitos primordiais o desenvolvimento de uma solução de fácil assimilação, com reduzido impacto nos processos legados e baixo custo de implantação e manutenção.
+Diante desse cenário, concebeu-se um Produto Viável Mínimo (MVP) destinado a avaliar a exequibilidade de adoção e os benefícios decorrentes da implementação de um sistema web para o cadastramento e a comercialização de produtos (Figura 1). A opção por uma arquitetura web pautou-se na facilidade de acesso, permitindo a execução do sistema em dispositivos móveis já pertencentes ao estabelecimento, como smartphones. Dessa forma, a câmera integrada aos aparelhos pode ser empregada para a leitura ótica dos códigos de barras dos itens, simplificando os procedimentos de cadastro (Figura 2) e checkout (Figura 3) sem demandar a aquisição de periféricos dedicados ou investimentos em infraestrutura adicional, o que minimizou os custos iniciais e viabilizou a realização de testes operacionais.
+
+
+Fonte: Elaborado pelos autores (2026). 
+
+Fonte: Elaborado pelos autores (2026). 
+
+Fonte: Elaborado pelos autores (2026). 
+
+
+	Para o desenvolvimento do MVP, adotou-se um conjunto de tecnologias e serviços criteriosamente selecionados com base nos requisitos da solução proposta. Utilizou-se o framework Django como infraestrutura para a aplicação web e para a implementação da lógica de negócios no ambiente do servidor. No tocante ao front-end, empregaram-se HTML e JavaScript para a estruturação da interface do usuário e execução das rotinas no navegador. O processo de cadastramento de mercadorias foi otimizado mediante a integração de uma API aberta dedicada a produtos alimentícios (Open Food Facts), a qual viabilizou a recuperação automatizada de dados operacionais a partir do escaneamento do código de barras, mitigando a necessidade de inserção manual de informações. Por fim, a infraestrutura da plataforma Google Cloud foi empregada para a hospedagem do sistema em nuvem, garantindo sua disponibilidade remota e a acessibilidade contínua pelos dispositivos operados no estabelecimento.
+	Mediante a validação do MVP, delineia-se a possibilidade de expansão do sistema por meio da incorporação progressiva de novas funcionalidades. Entre as melhorias prioritárias, destacam-se a gestão de estoque e o monitoramento automatizado dos prazos de validade das mercadorias, aspectos fundamentais apontados no diagnóstico inicial e nas entrevistas conduzidas junto aos envolvidos. Adicionalmente, prevê-se a implementação de módulos voltados ao registro detalhado das movimentações de inventário — considerando variações nos valores de aquisição e alienação —, bem como o histórico de vendas e a emissão de relatórios gerenciais sintéticos para suporte à tomada de decisão financeira. A integração desses componentes viabilizaria a transição gradual do MVP para uma plataforma de gestão comercial robusta, alinhada às arquiteturas de sistemas de automação e gestão integrada (ERP). Embora tal abrangência transcenda o escopo e as necessidades imediatas identificadas no Minimercado Gomeri para esta etapa da pesquisa, compreende-se que esse roteiro de evolução estabelece diretrizes replicáveis para outros estabelecimentos do setor varejista ou para empreendimentos correlatos que demandem uma gestão operacional mais abrangente.
+
+2.5.1 Benchmark de sistemas concorrentes e marcas similares
+Tabela 1 – Matriz comparativa entre ferramentas de mercado e a solução proposta. 
+Categoria / Solução
+Vantagens Identificadas 
+Limitações Frente ao Micromercado
+Sistemas comerciais populares (como MarketUP, Bling, Conta Azul).
+Módulos completos e integrados (PDV, emissão de documentos fiscais e fluxo de caixa); 
+Disponibilidade de planos de entrada gratuitos ou de baixo custo. 
+Elevada curva de aprendizagem e excesso de interfaces burocráticas;
+Sobrecarga cognitiva no momento do atendimento no balcão;
+Ausência de foco em alertas operacionais rápidos para validação e reposição.
+Registros Manuais e Planilhas Eletrônicas (Papel, Caderno, Excel).
+Custo de aquisição nulo;
+Alta familiaridade do operador e baixa barreira técnica;
+Flexibilidade imediata na organização visual dos dados.
+Ausência de automatização e rotinas repetitivas de controle;
+Inexistência de mecanismos proativos de alerta para datas de vencimento;
+Alto risco de erro humano, falta de integridade e perda de dados operacionais.
+Solução Proposta (Aplicação Web / MVP).
+Interface minimalista e orientada ao ritmo diário de atendimento, com foco específico nas dores críticas: prevenção de rupturas e controle de validade. Além de isenção de custos operacionais e facilidade de acesso via navegador.
+Escopo estritamente delimitado às necessidades prioritárias do estudo de caso e ausência inicial de módulos fiscais ou financeiros complexos.
+
+Fonte: Elaborado pelos autores (2026). 
+2.5.2 Stacks tecnológicas para melhorias indicadas
+Back-End & Framework Web: Utilização de Node.js com Express ou, alternativamente, FastAPI com Python, visando maior facilidade técnica e agilidade no desenvolvimento.
+Front-End: Desenvolvimento com HTML5, CSS3 e JavaScript (seja via Vanilla ou React), priorizando uma interface leve, altamente responsiva e adaptável a diferentes dispositivos.
+Banco de Dados: Sistemas relacionais como PostgreSQL, SQLite MySQL para garantir o gerenciamento consistente e robusto das entidades centrais (produtos, categorias, lotes, validades, movimentações de estoque e controle de usuários).
+Infraestrutura e Hospedagem em Nuvem: Adoção de serviços gratuitos ou voltados ao meio acadêmico, tais como Render, Fly.io, Supabase ou Neon.tech para o back-end e APIs, combinados com a Vercel para a publicação da interface web.
+
+
+2.5.3 Mapeamento e definição de APIs
+Para viabilizar a comunicação entre a aplicação e o banco de dados, o grupo definiu que será desenvolvida uma API própria. Essa API vai centralizar as regras de negócio e disponibilizar os dados necessários para o funcionamento do sistema, especialmente para o controle de estoque, validade e reposição de mercadorias no Minimercado Gomeri.
+Os endpoints da API serão definidos a partir das funcionalidades previstas para o MVP e do modelo de dados que está sendo elaborado pelo grupo. Por enquanto, foram levantados os seguintes recursos principais:
+- Produtos: cadastro e consulta de produtos;
+- Estoque: consulta e atualização das quantidades disponíveis;
+- Vendas: registro e consulta das movimentações de vendas;
+- Caixa: registro e consulta das movimentações relacionadas ao caixa.
+A ideia é seguir o padrão REST, com endpoints específicos para cada recurso. Como exemplos iniciais, temos GET /produtos, POST /produtos, GET /produtos/{id} e GET /estoque. Os endpoints finais poderão sofrer ajustes conforme o MVP se manter sendo consolidado e o modelo de dados, posteriormente, fechado.
+O objetivo é que a API ajude a resolver problemas reais do estabelecimento, centralizando as informações de produtos, vendas e estoque. Assim, ao registrar uma venda, o sistema poderá atualizar automaticamente a quantidade disponível do produto e ajudar a identificar itens que estão abaixo do estoque mínimo.
+Nesta etapa, o foco foi planejar os recursos principais da API, sem entrar em detalhes de implementação, que serão tratados nas próximas quinzenas do projeto.
+2.5.4 Avaliação de APIs terceiras
+Além da API própria, o grupo também vai avaliar se vale a pena integrar alguma API de terceiros para complementar a solução. A intenção é usar integrações externas apenas se elas realmente ajudarem a atender as necessidades identificadas no Minimercado Gomeri.
+Entre as possibilidades que foram levantadas estão:
+- API de CEP: para facilitar o preenchimento de endereços no cadastro;
+- API de cotação ou preços: caso faça sentido para a aplicação;
+- API de WhatsApp: para enviar notificações sobre situações como estoque baixo.
+- API de base de dados de informações de produtos (GS1, DotCompany): para facilitar o cadastro de produtos, com o autocompletar de informações a partir da leitura do código de barras.
+A decisão sobre quais integrações serão implementadas vai levar em conta a utilidade prática para o projeto, a viabilidade técnica, a disponibilidade dos serviços e o impacto no escopo do MVP. Se alguma integração não trouxer benefício claro ou acabar complicando demais o sistema, a ideia é deixar essa funcionalidade para uma etapa futura como melhoria, fora do MVP.
+
+REFERÊNCIAS
+ABNT – Associação Brasileira de Normas Técnicas. NBR 14724: Informação e documentação. Trabalhos Acadêmicos - Apresentação. 3. ed. Rio de Janeiro: ABNT, 2011.
+BALLOU, R.H. Gerenciamento da cadeia de suprimentos/logística empresarial. 5ª ed. Porto Alegre/SC: Bookman, 2006. 
+BASS, Len; CLEMENTS, Paul; KAZMAN, Rick. Software architecture in practice. 4th ed. Boston: Addison-Wesley, 2021. 
+CHING, Hong Yuh. Gestão de estoques na cadeia de logística integrada: supply chain. 4. ed. São Paulo: Atlas, 2010. 
+ELMASRI, Ramez; NAVATHE, Shamkant B. Sistemas de banco de dados. 7. ed. São Paulo: Pearson Education do Brasil, 2018. 
+KOTLER, Philip; KELLER, Kevin Lane. Administração de marketing. 15. ed. São Paulo: Pearson Education do Brasil, 2018. 
+LAUDON, Kenneth C.; LAUDON, Jane P. Sistemas de informação gerenciais. 11. ed. São Paulo: Pearson Prentice Hall, 2014.
+RUBIN, Kenneth S. Scrum essencial: um guia prático para o mais popular processo ágil. São Paulo: Ilhas Independentes, 2017. 
+SEBRAE – Serviço Brasileiro de Apoio às Micro e Pequenas Empresas. Sobrevivência das empresas no Brasil. Brasília: SEBRAE, 2020. 
+SEBRAE. Serviço Brasileiro de Apoio às Micro e Pequenas Empresas. Gestão de estoque para pequenos negócios. Brasília: SEBRAE, 2020.
+SEVERINO, A. J. Metodologia do trabalho científico. 22. ed. rev. e ampl. São Paulo: Cortez, 2002.
+SOMMERVILLE, Ian. Engenharia de software. 10. ed. São Paulo: Pearson Education do Brasil, 2019.
+WAZLAWICK, Raul Sidnei. Metodologia de pesquisa para ciência da computação. 2. ed. Rio de Janeiro: Elsevier, 2014.
+
