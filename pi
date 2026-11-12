@@ -1,6 +1,16 @@
+UNIVERSIDADE VIRTUAL DO ESTADO DE SÃO PAULO
+
+
+Eixo Computação
 
 
 
+Beatriz de Melo Scarparo
+Lucas de Lucena Gesseff
+Marcus Vinicius de Oliveira Silva
+Rafael Gomes Rosa
+Renato Hiroshi Tamashiro
+Vinicius Marques dos Santos
 
 
 
@@ -8,6 +18,12 @@
 
 Tecnologia na gestão de pequenos mercados: Análise de processos e proposta de um sistema de apoio à gestão
 
+
+
+
+Vídeo de apresentação do Projeto Integrador
+
+<https://youtu.be/-YFuq_Nnl-U>
 
 
 
@@ -30,9 +46,6 @@ UNIVERSIDADE VIRTUAL DO ESTADO DE SÃO PAULO
 
 
 
-
-
-
 Tecnologia na gestão de pequenos mercados: Análise de processos e proposta de um sistema de apoio à gestão
 
 
@@ -41,7 +54,9 @@ Tecnologia na gestão de pequenos mercados: Análise de processos e proposta de 
 
 
 
-Relatório Técnico-Científico apresentado na disciplina de Projeto Integrador II para o Eixo Computação da Universidade Virtual do Estado de São Paulo (UNIVESP),
+
+Relatório Técnico-Científico apresentado na disciplina de Projeto Integrador II para os cursos de Bacharelado em Ciência de Dados e Bacharelado em Tecnologia da Informação da Universidade Virtual do Estado de São Paulo (UNIVESP), orientado pelo professor Fabio Alan de Souza.
+
 
 
 
@@ -58,179 +73,1392 @@ Relatório Técnico-Científico apresentado na disciplina de Projeto Integrador 
 
 São Paulo - SP
 2026
+SCARPARO, Beatriz de Melo; GESSEFF, Lucas de Lucena; SILVA, Marcus Vinicius de Oliveira; ROSA, Rafael Gomes; TAMASHIRO, Renato Hiroshi; SANTOS, Vinicius Marques dos. Tecnologia na gestão de pequenos mercados: Análise de processos e proposta de um sistema de apoio à gestão. 67f. Relatório Técnico-Científico. Bacharelado em Ciência de Dados, Bacharelado em Tecnologia da Informação – Universidade Virtual do Estado de São Paulo. Orientador: Fabio Alan De Souza. Polos Freguesia do Ó, Vila Curuçá, Caminho do Mar, Heliópolis, 2026. 
+
+
 
 RESUMO
-Os microempreendimentos comerciais exercem função vital no abastecimento local, mas a gestão fundamentada na intuição e a inadequação de sistemas genéricos frequentemente limitam sua eficiência operacional, resultando em perdas financeiras por expiração de produtos e escassez nas gôndolas. Visando superar essas barreiras, o presente trabalho tem como objetivo analisar os processos internos de um minimercado familiar e propor o desenvolvimento de um Produto Viável Mínimo (MVP) web para apoiar o controle de validades e a reposição de mercadorias, assegurando agilidade no atendimento de balcão. A pesquisa fundamenta-se em uma metodologia de campo qualitativa, conduzida mediante entrevistas e observação direta do fluxo logístico, articulada aos preceitos da Engenharia de Software e à utilização de frameworks ágeis (Scrum) para o levantamento sistemático de requisitos. Os resultados preliminares englobam a estruturação de uma aplicação leve com interface minimalista, hospedada em nuvem e amparada por um banco de dados relacional, desenhada especificamente para alertar sobre vencimentos e otimizar o inventário sem gerar sobrecarga cognitiva aos operadores. Conclui-se, em suma, que a viabilidade da transição digital em negócios de pequeno porte depende da criação de ferramentas estritamente alinhadas às restrições de tempo dos usuários, comprovando que sistemas focados e ergonômicos são capazes de mitigar o erro humano, garantir a precisão dos dados operacionais e promover a sustentabilidade gerencial na economia de vizinhança.
+Os minimercados de bairro têm papel importante no abastecimento local, mas a gestão baseada na memória e na estimativa provoca perdas por vencimento de produtos e falta de mercadorias nas gôndolas, e sistemas genéricos costumam ser abandonados por exigirem tempo demais dos operadores. Este trabalho analisa os processos de um minimercado familiar e apresenta o desenvolvimento de um Produto Viável Mínimo (MVP) web para apoiar o cadastro de produtos, o controle de lotes e validades, o registro de vendas e a reposição de estoque, sem comprometer a agilidade do atendimento no balcão. A pesquisa tem abordagem qualitativa e aplicada, com entrevista ao proprietário para o levantamento de requisitos, desenvolvimento iterativo inspirado no Scrum e teste de usabilidade no próprio estabelecimento. O sistema foi implementado em Python com Django e banco de dados SQLite, com leitura de códigos de barras pela câmera do celular, integração com a base Open Food Facts e publicação no Google Cloud Run. No teste, o proprietário concluiu todas as tarefas e o sistema obteve 87,5 pontos na escala SUS; a venda foi mais lenta que na calculadora, mas passou a manter o estoque atualizado a cada operação. As sugestões do proprietário foram incorporadas, e a versão final foi aprovada e está em uso no dia a dia do estabelecimento. Os resultados indicam que uma aplicação enxuta e acessível pelo navegador é viável nesse contexto, desde que respeite as restrições de tempo e de recursos dos operadores.
 
 PALAVRAS-CHAVE: Varejo; Estoque; Sustentabilidade; Software; MVP.
+
+
 LISTA DE ILUSTRAÇÕES
 
-Figura 1 – Tela de cadastramento	16
-Figura 2 – Tela de registro dos itens escaneados	17
-Figura 3 – Tela de definição de preços e finalização da venda	18
+Figura 1 – Tela de cadastro de produto com leitura do código de barras pela câmera (MVP de setembro)	22
+Figura 2 – Tela de cadastro (quantidade e preço) e consulta do estoque atual	23
+Figura 3 – Tela de venda com definição de preços e finalização	24
+Figura 4 – Tela de estoque da versão pré-feedback	32
+Figura 5 – Tela de cadastro de produto e do primeiro lote	33
+Figura 6 – Tela de edição de produto e gestão de lotes	34
+Figura 7 – Tela de venda da versão pré-feedback, com remoção de itens	35
+Figura 8 – Aba Resumo da planilha integrada à API	37
+Figura 9 – Abas Estoque, Vendas e Movimentações da planilha integrada à API	38
+Figura 10 – Painel inicial com os alertas de vencimento e de estoque baixo	45
+Figura 11 – Tela de vencimentos com filtro por prazo	46
+Figura 12 – Tela de produtos abaixo do estoque mínimo	47
 
+LISTA DE TABELAS
 
-LISTAS DE TABELAS
-
-Tabela 1 - Matriz comparativa entre ferramentas de mercado e a solução proposta. 	20
+Tabela 1 – Disciplinas do curso aplicadas no projeto	11
+Tabela 2 – Etapas do Design Thinking e atividades realizadas	15
+Tabela 3 – Eixos temáticos da entrevista	16
+Tabela 4 – Das evidências da entrevista aos requisitos do sistema	17
+Tabela 5 – Resultados dos testes internos de leitura	19
+Tabela 6 – Tarefas do teste de usabilidade com o proprietário	20
+Tabela 7 – Tecnologias utilizadas no MVP e alternativas para melhorias futuras	25
+Tabela 8 – Matriz comparativa entre ferramentas de mercado e a solução proposta	26
+Tabela 9 – Evolução do protótipo ao longo de outubro e no início de novembro de 2026	29
+Tabela 10 – Entidades do modelo de dados da versão final	31
+Tabela 11 – Endpoints da API própria	36
+Tabela 12 – Requisitos e sua situação antes e depois do teste com o proprietário	39
+Tabela 13 – Verificação funcional da versão pré-feedback	40
+Tabela 14 – Resultados do teste de usabilidade com o proprietário	41
+Tabela 15 – Registro de sugestões da comunidade externa	43
 
 
 SUMÁRIO
 
 
-1. Introdução	7
-2. Desenvolvimento	8
+1 Introdução	7
+2 Desenvolvimento	8
 2.1 Objetivos	8
 2.1.1 Objetivo geral	8
-2.1.2 Objetivo específicos	8
-2.2 Justificativa e delimitação do problema	9
+2.1.2 Objetivos específicos	8
+2.2 Justificativa e delimitação do problema	8
 2.3 Fundamentação teórica	10
-2.4 Metodologia	12
-2.4.1 Ouvir e interpretar o contexto	12
-2.4.2 Perfil dos sujeitos participantes	12
-2.4.3 Coleta das informações iniciais	12
-2.4.4 Criar / Prototipar	13
-2.4.5 Implementar / Testar	14
-2.4.6 Melhorias futuras indicadas	14
-2.5 Resultados preliminares: Solução Inicial	14
-2.5.1 Benchmark de sistemas concorrentes e marcas similares	20
-2.5.2 Stacks tecnológicas para melhorias indicadas	21
-2.5.3 Mapeamento e definição de APIS	21
-2.5.4 Avaliação de APIS terceiras	22
-REFERÊNCIAS	23
+2.4 Aplicação das disciplinas estudadas no projeto integrador	11
+2.5 Metodologia	14
+2.5.1 Ouvir – o contexto do estabelecimento	15
+2.5.2 Ouvir – procedimentos da entrevista	16
+2.5.3 Interpretar – análise das informações	16
+2.5.4 Criar e prototipar	18
+2.5.5 Implementar e testar	18
+2.5.6 Validação com a comunidade externa	21
+2.6 Resultados preliminares: solução inicial	21
+2.6.1 Tecnologias utilizadas no MVP e alternativas para melhorias futuras	25
+2.6.2 Benchmark de sistemas concorrentes	26
+2.6.3 Avaliação de APIs terceiras	26
+3 Resultados: solução final	28
+3.1 Fase inicial – escuta e interpretação	28
+3.2 Prototipação e desenvolvimento	29
+3.2.1 Evolução do protótipo	29
+3.2.2 Modelo de dados	30
+3.2.3 Telas da versão pré-feedback com o proprietário	31
+3.2.4 API própria	36
+3.2.5 Integração da API com planilha de acompanhamento	36
+3.3 Implementar e validar	38
+3.3.1 Verificação funcional da versão pré-feedback	40
+3.3.2 Teste com o proprietário e devolutivas	41
+3.3.3 Ajustes realizados após o teste	44
+3.3.4 Melhorias realizadas e pendentes	47
+4 Considerações finais	49
+4.1 Retomada dos resultados e fundamentação	49
+4.2 Contribuições e limitações	50
+4.3 Impacto na comunidade externa	50
+REFERÊNCIAS	52
+APÊNDICES	53
+APÊNDICE A – Roteiro dos testes de usabilidade com o proprietário	53
+A.1 Objetivo e hipóteses	53
+A.2 Participantes e papéis	53
+A.3 Local, momento e materiais	53
+A.4 Preparação antes da visita	54
+A.5 Roteiro da sessão	55
+A.6 Métricas	56
+A.7 Tarefas	56
+A.8 Ficha de registro	59
+A.9 Questionário SUS	60
+A.10 Cuidados éticos	61
+APÊNDICE B – Roteiro e respostas da entrevista	62
+APÊNDICE C – Termo de autorização de uso de imagem	65
+APÊNDICE D – Vídeo completo dos testes realizados	66
+APÊNDICE E  – Repositório	67
 
 
-1. Introdução
-Este projeto tem como tema central a aplicação da tecnologia na gestão de pequenos mercados, abordando a análise de processos operacionais e a proposta de um sistema de apoio à reposição de mercadorias. O estudo explora a intersecção entre o desenvolvimento de soluções computacionais e o cotidiano do comércio de vizinhança, investigando como a informatização pode ser introduzida no contexto de microempreendimentos. Trata-se, portanto, de uma pesquisa direcionada à modernização de rotinas comerciais por meio de ferramentas digitais adaptadas à realidade do pequeno varejo.
-A partir desse escopo, a pesquisa levanta o problema da gestão estritamente manual, que gera ineficiências como o descarte de produtos vencidos e rupturas de gôndola. Para responder a isso, a ideia do projeto consiste em desenvolver uma aplicação web voltada ao controle preventivo de estoques. O foco direciona-se a superar a rejeição que pequenos comerciantes demonstram diante de sistemas genéricos e complexos. A investigação busca entender como uma ferramenta digital enxuta pode resolver dores prioritárias sem adicionar peso burocrático ao atendimento de balcão.
-No âmbito das abordagens tecnológicas o tema foca no desenvolvimento de soluções voltadas à Interação Humano-Computador e usabilidade. O projeto adota plataformas escaláveis para democratizar a transformação digital em locais com restrições de tempo e infraestrutura. O desafio central é abstrair a complexidade computacional, entregando uma interface fluida que garanta registros gerenciais seguros, imperceptíveis e acessíveis ao usuário.
-A principal motivação deste projeto é o apoio prático à comunidade externa, atuando diretamente na mitigação das dificuldades diárias que ameaçam a viabilidade de pequenos empreendimentos periféricos. Por meio da concepção de uma solução sem barreiras financeiras e alinhada à realidade do operador, pretende-se demonstrar que as ferramentas digitais podem atuar como verdadeiras aliadas na otimização do trabalho.
-O estudo foca em desenvolver e validar um Produto Viável Mínimo (MVP) web para suporte operacional. Analisa-se como a transição do controle físico para uma plataforma leve moderniza a verificação de validades e a reposição, viabilizando a gestão comercial com o menor atrito tecnológico.
-2. Desenvolvimento
+1 Introdução
+Este projeto tem como tema a aplicação da tecnologia na gestão de pequenos mercados, abordando a análise de processos operacionais e a proposta de um sistema de apoio ao controle de estoque e à reposição de mercadorias. O estudo investiga como a informatização pode ser introduzida no cotidiano de um minimercado de bairro, por meio de ferramentas digitais adaptadas à realidade do pequeno varejo.
+O problema abordado é a gestão estritamente manual, que gera ineficiências como o descarte de produtos vencidos e a falta de mercadorias nas gôndolas (ruptura de estoque). Para enfrentá-lo, o projeto propõe uma aplicação web voltada ao controle preventivo do estoque, capaz de superar a rejeição que pequenos comerciantes costumam demonstrar diante de sistemas genéricos e complexos. A investigação busca entender como uma ferramenta enxuta pode resolver as necessidades prioritárias do negócio sem acrescentar burocracia ao atendimento no balcão.
+Do ponto de vista tecnológico, o trabalho se apoia nos princípios de Interação Humano-Computador (IHC) e de usabilidade. O desafio central é ocultar a complexidade técnica do usuário, oferecendo uma interface simples que garanta registros confiáveis e acessíveis, mesmo em um ambiente com pouco tempo disponível e infraestrutura limitada.
+A principal motivação é o apoio prático à comunidade externa, contribuindo para reduzir dificuldades que ameaçam a continuidade de pequenos empreendimentos. Por meio de uma solução de baixo custo e alinhada à realidade do operador, pretende-se demonstrar que ferramentas digitais podem ser aliadas na organização do trabalho.
+Para isso, o estudo desenvolve e avalia um Produto Viável Mínimo (MVP, do inglês Minimum Viable Product) web, analisando como a transição do controle manual para uma plataforma leve pode apoiar o cadastro de produtos, o registro de vendas e o acompanhamento de validades com o menor atrito possível.
+2 Desenvolvimento
 2.1 Objetivos
-2.1.1 Objetivo Geral
-Desenvolver, implementar e validar uma aplicação web enxuta destinada ao suporte operacional e à gestão simplificada de um minimercado familiar. A solução busca otimizar sistematicamente a verificação preventiva de prazos de validade e o controle contínuo da reposição de estoque nas gôndolas, eliminando falhas operacionais decorrentes de rotinas manuais e garantindo o menor atrito tecnológico e cognitivo possível para os operadores no cotidiano do comércio.
-2.1.2 Objetivos Específicos
-Para alcançar e consolidar o objetivo geral, definem-se as seguintes etapas do trabalho, rigorosamente estruturadas segundo a natureza das ações científicas, técnicas e operacionais a serem executadas:
-Etapa Exploratória: Mapear os processos vigentes de gerenciamento e movimentação de mercadorias no estabelecimento, identificando as principais rotinas informais, a dependência do controle por estimativa e memória, bem como os gargalos operacionais no fluxo diário de atendimento de balcão.
-Etapa Descritiva: Levantar, formalizar e caracterizar os requisitos funcionais, não funcionais e de usabilidade necessários para a concepção e prototipagem de uma interface responsiva, leve e intuitiva. A arquitetura da solução é projetada para adequar-se perfeitamente ao perfil de baixa maturidade digital dos operadores.
-Etapa Explicativa: Avaliar e mensurar empiricamente os impactos, ganhos de eficiência e benefícios operacionais resultantes da transição do controle manual para a plataforma web. Analisa-se a capacidade do sistema em mitigar o erro humano, reduzir o desperdício decorrente da expiração de validades e prevenir a ocorrência de rupturas de estoque na área de vendas, assegurando a viabilidade financeira do empreendimento.
+2.1.1 Objetivo geral
+Desenvolver, implementar e validar uma aplicação web enxuta de apoio à gestão de um minimercado familiar, voltada ao controle de estoque, à verificação preventiva de prazos de validade e à reposição de mercadorias, reduzindo falhas decorrentes de rotinas manuais e exigindo o menor esforço possível dos operadores no dia a dia.
+2.1.2 Objetivos específicos
+Para alcançar o objetivo geral, o trabalho foi organizado em três etapas:
+Etapa Exploratória: mapear os processos de gerenciamento e movimentação de mercadorias no estabelecimento, identificando as rotinas informais, a dependência de estimativas e da memória e os gargalos no atendimento de balcão.
+Etapa Descritiva: levantar e documentar os requisitos funcionais, não funcionais e de usabilidade necessários à prototipação de uma interface responsiva, leve e intuitiva, adequada ao perfil de baixa familiaridade digital dos operadores.
+Etapa Explicativa: avaliar os efeitos da transição do controle manual para a plataforma web, verificando sua capacidade de reduzir erros, diminuir perdas por vencimento e prevenir rupturas de estoque.
 2.2 Justificativa e delimitação do problema 
-O setor varejista de pequeno porte, em especial o comércio de vizinhança familiar, desempenha um papel socioeconômico central no abastecimento comunitário e na geração de renda local. Contudo, a sustentabilidade operacional desses estabelecimentos comumente esbarra na carência de processos estruturados e na baixa adesão a ferramentas digitais. No cenário empírico delimitado por esta pesquisa, o Minimercado Gomeri, a administração é conduzida integralmente por dois colaboradores em revezamento contínuo. As operações diárias concentram-se no uso de controles manuais e registros descentralizados (como a calculadora de balcão com impressão térmica) e no controle de validade e reposição apoiado essencialmente em memória e estimativas.
-A tentativa prévia de implementação de um sistema informatizado no local revelou um fenômeno recorrente na microinformática aplicada ao varejo: a rejeição funcional da ferramenta. O software anteriormente adotado foi abandonado não por tecnofobia ou desinteresse gerencial, mas pelo atrito operacional introduzido por interfaces sobrecarregadas e rotinas burocráticas de baixa e cadastro de mercadorias, as quais tornavam o processo mais moroso e oneroso do que o método manual tradicional, além do ônus contínuo de mensalidades de manutenção. Essa sobrecarga é particularmente crítica em um ambiente com mão de obra reduzida, no qual o tempo e o esforço despendidos no atendimento direto ao cliente não comportam processos administrativos complexos.
-Diante dessa realidade, o problema central de pesquisa é delimitado pela seguinte questão norteadora:
-“Como conceber e implementar uma aplicação web de apoio à reposição de mercadorias e ao controle de validade que ofereça confiabilidade na gestão de dados sem impor atrito ou aumento no tempo das rotinas operacionais de um micromercado familiar?”
-A justificativa para a realização deste estudo desdobra-se em três dimensões principais:
-Relevância Social e Comunitária: Os pequenos comércios de bairro garantem capilaridade no acesso a bens básicos e fortalecem os laços de convivência local. A perda de mercadorias por expiração de prazo de validade e a ocorrência frequente de rupturas de estoque afetam a margem de lucro e a competitividade do negócio, podendo comprometer sua longevidade. Desenvolver uma ferramenta acessível, de baixa curva de aprendizagem e sem barreiras financeiras contribui diretamente para a inclusão digital e a resiliência de negócios periféricos e familiares.
-Relevância Técnica e Acadêmica: Do ponto de vista da Ciência da Computação e Tecnologia da Informação, o trabalho aborda o desafio de alinhar arquitetura de software (arquitetura modular em nuvem, consumo via APIs e persistência consistente em banco de dados) aos princípios de Interação Humano-Computador (IHC) e Acessibilidade (WCAG). Explora-se a criação de um Produto Viável Mínimo (MVP) altamente intuitivo para usuários com baixa maturidade digital, investigando como reduzir custos cognitivos e temporais na entrada de dados operacionais.
-Contribuição Prática para o Local do Estudo: A pesquisa entrega ao estabelecimento colaborador um sistema focado em suas dores prioritárias: substituição de estimativas por registros estruturados de validade, previsibilidade para reposições, mitigação de perdas financeiras por descarte e garantia de disponibilidade de produtos para a comunidade local, tudo isso preservando a agilidade exigida pela rotina de atendimento no balcão.
-
+O pequeno varejo, em especial o comércio de bairro de gestão familiar, tem papel relevante no abastecimento da comunidade e na geração de renda local. Ainda assim, os negócios do comércio estão entre os que apresentam maior taxa de fechamento nos primeiros anos de atividade (SEBRAE, 2020b), o que reforça a importância de processos de gestão estruturados. No cenário delimitado por esta pesquisa, o Minimercado Gomeri, a administração é conduzida por dois colaboradores em revezamento. As operações dependem de controles manuais e registros descentralizados, como a calculadora de balcão com impressão térmica, e o controle de validade e reposição se apoia essencialmente na memória e em estimativas.
+Uma tentativa anterior de informatização revelou um fenômeno recorrente no pequeno varejo: o abandono da ferramenta. O software adotado foi descartado não por desinteresse, mas pelo atrito causado por interfaces sobrecarregadas e por rotinas burocráticas de cadastro e baixa de mercadorias, que tornavam o processo mais lento do que o método manual, além do custo contínuo de mensalidades. Essa sobrecarga é crítica em um ambiente com equipe reduzida, no qual o tempo dedicado ao atendimento não comporta processos administrativos complexos.
+Diante dessa realidade, o problema de pesquisa é delimitado pela seguinte questão norteadora:
+“Como conceber e implementar uma aplicação web de apoio à reposição de mercadorias e ao controle de validade que ofereça confiabilidade na gestão de dados sem aumentar o tempo das rotinas operacionais de um minimercado familiar?”
+A justificativa do estudo se desdobra em três dimensões:
+Relevância Social e Comunitária: os comércios de bairro garantem acesso próximo a bens básicos e fortalecem os laços de convivência local. Perdas por vencimento e rupturas frequentes reduzem a margem de lucro e a competitividade, podendo comprometer a continuidade do negócio. Uma ferramenta acessível, de fácil aprendizado e baixo custo contribui para a inclusão digital e a resiliência desses empreendimentos.
+Relevância Técnica e Acadêmica: do ponto de vista da Ciência de Dados e da Tecnologia da Informação, o trabalho alinha arquitetura de software (aplicação em nuvem, comunicação por APIs e persistência em banco de dados relacional) aos princípios de IHC e às diretrizes de acessibilidade das Web Content Accessibility Guidelines – WCAG (W3C, 2023). Investiga-se como reduzir o esforço cognitivo e o tempo de entrada de dados para usuários com pouca familiaridade digital.
+Contribuição Prática para o Local do Estudo: a pesquisa entrega ao estabelecimento um sistema focado em suas necessidades prioritárias: substituir estimativas por registros estruturados de validade, dar previsibilidade às reposições, reduzir perdas por descarte e garantir a disponibilidade de produtos, preservando a agilidade do atendimento no balcão.
 2.3 Fundamentação teórica
-O comércio varejista de vizinhança desempenha papel primordial no abastecimento local e na dinâmica socioeconômica das comunidades. No entanto, a sobrevivência desses empreendimentos depende substancialmente da capacidade de estruturar processos internos básicos, em especial o controle de fluxo de mercadorias. Conforme aponta o SEBRAE (2020), falhas na gestão de estoques respondem por perdas severas de capital de giro em pequenos negócios, manifestando-se tanto na expiração de itens perecíveis quanto em rupturas de gôndola que frustram a demanda imediata do consumidor.
-Sob a perspectiva da logística integrada, o controle de armazenagem transcende a mera conferência física, configurando elemento estratégico de sustentação financeira. A literatura de suprimentos enfatiza que coordenar compras, níveis de reposição e prazos de validade evita desperdícios e preserva as margens operacionais do lojista (BALLOU, 2006). A eficácia desse processo reside no alinhamento contínuo entre o comportamento de consumo e os pedidos aos fornecedores, impedindo tanto o sobre-estoque quanto a escassez de produtos essenciais na área de vendas (CHING, 2010).
-A superação de rotinas manuais ou baseadas na memória exige o emprego racional de Sistemas de Informação Gerenciais (SIG). Como explicam Laudon e Laudon (2014), soluções computacionais devem mitigar a sobrecarga cognitiva dos operadores por meio da centralização segura de dados e da automação de registros rotineiros. Para microestabelecimentos, onde a equipe de atendimento é enxuta, sistemas excessivamente burocráticos ou com interfaces poluídas tendem ao abandono funcional; a tecnologia precisa, portanto, atuar como facilitadora da rotina de balcão, garantindo agilidade sem comprometer a integridade das informações operacionais.
-Nesse contexto, a Engenharia de Software fornece o arcabouço conceitual e metodológico indispensável para construir soluções verdadeiramente aderentes às restrições do ambiente de implantação. Sommerville (2019) reforça que o sucesso de um artefato tecnológico reside na compreensão profunda das reais condições e necessidades de seus usuários finais. Em termos arquiteturais, a opção por aplicações desacopladas, estruturadas em serviços web e integradas por interfaces de programação (APIs), assegura que interfaces leves em navegadores executem operações consistentes em servidores em nuvem, garantindo responsividade e baixo consumo de recursos locais (BASS; CLEMENTS; KAZMAN, 2021).
-O núcleo operacional desse tipo de sistema concentra-se no rastreamento confiável de entradas, lotes, vencimentos e baixas por venda. Acerca da confiabilidade da persistência de dados em ambientes transacionais, a literatura especializada define que:
-Um sistema de banco de dados é projetado para gerenciar grandes volumes de informação, garantindo a integridade, a segurança e a recuperação eficiente dos dados ao longo do tempo. Em aplicações comerciais, a modelagem relacional correta evita anomalias de inserção e exclusão, garantindo que as informações críticas sobre o inventário e as transações diárias reflitam com exatidão a realidade operacional do negócio, sem perdas ou inconsistências estruturais. (ELMASRI; NAVATHE, 2018, p. 55).
-Por fim, a transposição desses requisitos teóricos para um Produto Viável Mínimo (MVP) requer processos de desenvolvimento ágeis e iterativos. Conforme preconiza Rubin (2017), ciclos curtos de prototipação e entrega permitem incorporar com rapidez os feedbacks coletados junto ao usuário real, assegurando que o sistema final atenda com precisão às demandas do estabelecimento sem onerar o seu fluxo diário de trabalho.
-2.4 Metodologia
-A metodologia adotada neste projeto seguiu uma abordagem qualitativa e aplicada, estruturada em três etapas fundamentais: (1) ouvir e interpretar o contexto; (2) criar e prototipar; (3) implementar e testar. Cada etapa é detalhada a seguir:
-2.4.1. Ouvir e interpretar o contexto
-O presente estudo concentra-se no mapeamento e na análise das operações do Minimercado Gomeri, estabelecimento comercial de porte micro e caráter familiar situado no município de São Bernardo do Campo, em atividade há 22 anos. A organização dedica-se ao fornecimento de bens de consumo à comunidade do entorno, operando por meio de fluxos predominantemente manuais, nos quais o gerenciamento de vendas e a verificação do estoque fundamentam-se de forma empírica e estimativa.
-2.4.2. Perfil dos sujeitos participantes
-Durante a etapa de pesquisa de campo, foi realizada uma entrevista por meio de contato virtual com um único participante: o proprietário do estabelecimento. Embora tenha optado por não se identificar, o comerciante prestou uma contribuição valiosa ao detalhar sua rotina de trabalho, as atribuições diárias e a infraestrutura interna do minimercado.	
+O comércio varejista de bairro tem papel importante no abastecimento local e na dinâmica socioeconômica das comunidades. A sobrevivência desses empreendimentos, porém, depende da capacidade de estruturar processos internos básicos, em especial o controle do fluxo de mercadorias. Segundo o SEBRAE (2020a), falhas na gestão de estoques comprometem o capital de giro dos pequenos negócios, seja pela perda de itens perecíveis, seja pela falta de produtos que frustram a demanda do consumidor.
+Sob a perspectiva da logística, o controle de estoque vai além da conferência física e constitui elemento estratégico para a saúde financeira do negócio. Coordenar compras, níveis de reposição e prazos de validade evita desperdícios e preserva as margens do lojista (BALLOU, 2006). A eficácia desse processo depende do alinhamento entre o comportamento de consumo e os pedidos aos fornecedores, evitando tanto o excesso de estoque quanto a falta de produtos essenciais (CHING, 2010).
+A superação de rotinas manuais exige o uso adequado de Sistemas de Informação Gerenciais (SIG). Laudon e Laudon (2014) explicam que soluções computacionais devem reduzir a sobrecarga dos operadores por meio da centralização dos dados e da automação de registros rotineiros. Em estabelecimentos com equipe enxuta, sistemas burocráticos ou com interfaces confusas tendem a ser abandonados; a tecnologia precisa facilitar a rotina de balcão, garantindo agilidade sem comprometer a integridade das informações.
+Nesse contexto, a Engenharia de Software oferece a base conceitual e metodológica para construir soluções aderentes às restrições do ambiente de uso. Sommerville (2019) destaca que o sucesso de um sistema depende da compreensão das reais condições e necessidades de seus usuários. Em termos de arquitetura, separar a interface executada no navegador das regras de negócio executadas no servidor, com comunicação por interfaces de programação (APIs), permite que dispositivos simples acessem operações consistentes hospedadas em nuvem (BASS; CLEMENTS; KAZMAN, 2021).
+O núcleo desse tipo de sistema é o registro confiável de entradas, lotes, vencimentos e baixas por venda. Elmasri e Navathe (2018) explicam que um sistema gerenciador de banco de dados é responsável por manter a integridade e a consistência das informações armazenadas, controlar o acesso concorrente por meio de transações e permitir a recuperação dos dados em caso de falha. Os autores também mostram que um projeto relacional bem normalizado evita anomalias de inserção, exclusão e atualização, o que é essencial para que os dados de estoque e de vendas reflitam a situação real do estabelecimento.
+Por fim, a construção de um MVP requer processos de desenvolvimento ágeis e iterativos. Conforme Rubin (2017), ciclos curtos de desenvolvimento e entrega permitem incorporar rapidamente o retorno do usuário real, aumentando a chance de que o sistema atenda às necessidades do estabelecimento sem onerar seu fluxo de trabalho.
+2.4 Aplicação das disciplinas estudadas no projeto integrador
+A Tabela 1 relaciona as disciplinas cursadas aos conteúdos aplicados e à parte do projeto em que cada um aparece.
+Tabela 1 – Disciplinas do curso aplicadas no projeto
+Disciplina
+Conteúdo aplicado
+Onde aparece no projeto
+Banco de Dados
+Modelagem conceitual e lógica (MER e DER - Semana 1; Elmasri e Navathe, modelo relacional e mapeamento (Semana 2), normalização de dados até 3FN (Semana 3), DDL e comandos SQL (Semana 4), consultas e junções JOIN (Semanas 5 e 6) e transações ACID (Semana 7; Elmasri e Navathe)
+Modelo de dados com produtos, lotes, vendas, itens e movimentações de caixa (3.2.2)
+Desenvolvimento web, Algoritmos e Programação de Computadores
+Lógica e estruturação em Python (Semanas 1 a 7); HTML5, CSS3 e interface responsiva (Semanas 2 e 3); Persistência relacional e integração com banco de dados (Semana 4 - Elmasri e Navathe); Desenvolvimento de rotas e web services RESTful; Framework Django para criação de aplicações web
+Aplicação em Django, telas em HTML, CSS e JavaScript (3.2.3)
+Engenharia de Software
+Processos ágeis e ciclos iterativos inspirados no Scrum (Semana 1); Elicitação, documentação e análise de requisitos funcionais e não funcionais levantados na entrevista (Semana 2); Arquitetura e projeto de software em camadas, separando interface, regras de negócio e persistência (Semana 3); Estratégias e técnicas de testes de software e validação, incluindo verificação funcional e testes de usabilidade (Semanas 5 e 6); e Gerência de configuração de software, controle de versões e artefatos via Git/GitHub (Semana 7).
+Requisitos da Tabela 4; ciclos registrados no repositório Git (3.2.1)
+Interface Humano-Computador
+Fundamentos de IHC e Fatores Humanos (Semanas 1 e 2): Conceitos de usabilidade, barreiras de adoção e características do usuário no pequeno varejo;
+Design Centrado no Usuário e Prototipagem (Semana 3): Concepção de interfaces focadas nas restrições de tempo do operador, técnicas de prototipagem e requisitos ergonômicos;
+Pilares de Qualidade e Usabilidade na Web (Semana 4): Acessibilidade, aceitabilidade e critérios de usabilidade aplicados a aplicações web responsivas;
+Princípios de Design para Dispositivos Móveis (Semana 5): Criação de telas minimalistas com botões grandes e navegação simplificada para uso em smartphones;
+Arquitetura de Navegação (Semana 6): Organização de fluxos e telas (estoque, cadastro, vendas) para garantir agilidade no atendimento de balcão;
+Avaliação de Interfaces e Testes com Usuários (Semana 7): Aplicação de testes de usabilidade com o proprietário no estabelecimento e mensuração por meio da escala System Usability Scale - SUS
+Interface para o celular e teste de usabilidade com o proprietário (2.5.5 e Apêndice A)
+Infraestrutura para Sistemas de Software
+Computação em Nuvem e Virtualização (Semanas 3 e 4): Modelos de entrega de serviços e o uso de containers e virtualização em nível de sistema operacional para implantação de aplicações em nuvem;
+Estudos de Caso e Implantação (Semana 7): Operacionalização de ambientes de infraestrutura com a publicação da aplicação web em containers Docker no Google Cloud Run e consumo de APIs (estudos de caso práticos).
+Publicação em container Docker no Google Cloud Run; consumo de APIs (2.6.1 e 3.2.4)
+Projetos e Métodos para a Produção do Conhecimento
+Abordagem qualitativa e natureza aplicada na solução de problemas reais (Semana 1); observação da rotina e entrevista semiestruturada para coleta de dados primários (Semana 2); análise temática das respostas e categorização em eixos para elicitação de requisitos (Semanas 3 e 4); aplicação do Design Thinking e desenvolvimento iterativo inspirado no Scrum (Semanas 5 e 6); validação empírica da solução e escrita do relatório técnico-científico (Semana 7).
+Entrevista, observação e análise das respostas (2.5)
 
-2.4.3. Coleta das informações iniciais
-A coleta das informações iniciais revelou um panorama detalhado sobre a dinâmica operacional do Minimercado Gomeri, evidenciando uma estrutura caracterizada pela simplicidade e pela flexibilidade. O participante entrevistado relatou que a equipe de trabalho é composta por apenas dois colaboradores, ele próprio e mais um funcionário, operando em regime de revezamento contínuo para cobrir todo o horário de atendimento do estabelecimento. Em razão desse quadro funcional enxuto, não existe uma divisão formal de tarefas ou atribuições fixas; ambos realizam alternadamente o atendimento no balcão, o recebimento de mercadorias, a reposição das gôndolas e a organização geral da loja. No tocante à gestão de mercadorias, destacou-se a ausência de um inventário formalizado ou de um levantamento preciso da quantidade de produtos dispostos nas prateleiras e mantidos em estoque. As rotinas de controle e abastecimento operam prioritariamente com base em estimativas visuais, na percepção empírica da rotatividade dos itens e nas solicitações diretas manifestadas pelos clientes no cotidiano. A aquisição de novos produtos ocorre de forma reativa: ao identificar a demanda do público ou a falta iminente de determinado item, busca-se fornecedores que ofereçam condições favoráveis de preço e prazo de pagamento. Além disso, a contagem diária de fluxo de clientes e o volume exato de vendas diárias não são registrados de forma sistemática, o que reforça a dependência de processos manuais e informais e fundamenta a necessidade de soluções tecnológicas leves voltadas à prevenção de perdas por validade e à otimização da reposição.
+Fonte: Elaborado pelos autores (2026).
 
-2.4.4. Criar / Prototipar
-Partindo da base da pesquisa de campo e da análise minuciosa da rotina operacional do Minimercado Gomeri, foram consolidadas as diretrizes e requisitos essenciais para o direcionamento e a concepção da aplicação :
-Interface simples e objetiva: Desenvolver uma navegação minimalista voltada a atender com precisão o perfil operacional dos usuários, que apresentam pouca familiaridade com sistemas digitais avançados e demandam agilidade sem ruídos visuais no atendimento diário.
-Entrada rápida de mercadorias e leitura de código de barras: Permitir a leitura ágil de produtos por meio da câmera de dispositivos móveis ou leitores físicos, reduzindo a necessidade de digitação manual e otimizando o fluxo de caixa.
-Controle preventivo de validade e reposição de estoque: Estruturar um mecanismo centralizado de alertas preventivos que substitua o controle empírico e de memória, mitigando perdas financeiras por expiração e prevenindo a ruptura nas gôndolas.
-Baixo custo de implantação e infraestrutura: Garantir o funcionamento contínuo via navegador em computadores ou smartphones já existentes no local, dispensando aquisição de hardwares dedicados ou custos frequentes de licenças.
-2.4.5. Implementar / Testar
-	Com o intuito de avaliar o protótipo desenvolvido, realizaram-se testes internos com uma amostragem diversificada de produtos. A seleção dos itens visou contemplar distintas variáveis e particularidades suscetíveis de impactar o processo de leitura do código de barras, a saber: variações dimensionais, composição de materiais, geometria das superfícies e posicionamento do código na embalagem.
-	No decorrer dos ensaios, constataram-se limitações decorrentes das especificidades físicas dos códigos que comprometeram a eficácia da leitura, ressaltando-se os códigos de dimensões reduzidas aplicados sobre superfícies curvas. Ademais, fatores ambientais não controlados, notadamente os níveis de iluminação, interferiram no rendimento do dispositivo.  Tanto a baixa luminosidade, quanto a iluminação intensa em materiais reflexivos, dificultaram o procedimento de leitura.
-2.4.6. Melhorias futuras indicadas
-	Em termos de aprimoramentos futuros, recomenda-se a incorporação de técnicas avançadas de processamento digital de imagens com vistas a mitigar as distorções geométricas de superfícies curvas, bem como otimizar a leitura em cenários de iluminação deficiente ou de reduzida dimensão de código. Como solução complementar, o protótipo possibilita a integração com leitores ópticos de código de barras dedicados, viabilizando o escaneamento quando os fatores ambientais para a câmera forem desfavoráveis ou conforme a preferência do operador, o que confere superior flexibilidade operacional ao sistema.
-2.5 Resultados preliminares: solução inicial 
-	Com base na entrevista conduzida com o proprietário do estabelecimento comercial selecionado para o estudo, o grupo identificou diversas oportunidades de intervenção e soluções tecnológicas capazes de otimizar e aprimorar as atividades operacionais diárias. A partir dos gargalos relatados pelo proprietário, aliados às análises prévias desenvolvidas pelo grupo, evidenciaram-se problemas recorrentes no gerenciamento de estoque, destacando-se as perdas decorrentes do vencimento de produtos e as ocorrências de ruptura de estoque.
-No contexto do Minimercado Gomeri, constatou-se uma iniciativa voltada à substituição gradual de processos manuais por soluções computadorizadas. Essa transição visa não apenas desonerar a rotina diária, mas também consolidar uma infraestrutura base que viabilize, futuramente, a implementação de funcionalidades mais especializadas, tais como o controle rigoroso de estoque e a gestão de prazos de validade. Diante do quadro operacional relatado pelo proprietário, caracterizado por elevada carga de trabalho, demandas intensas da rotina do comércio e limitações orçamentárias, definiram-se como requisitos primordiais o desenvolvimento de uma solução de fácil assimilação, com reduzido impacto nos processos legados e baixo custo de implantação e manutenção.
-Diante desse cenário, concebeu-se um Produto Viável Mínimo (MVP) destinado a avaliar a exequibilidade de adoção e os benefícios decorrentes da implementação de um sistema web para o cadastramento e a comercialização de produtos (Figura 1). A opção por uma arquitetura web pautou-se na facilidade de acesso, permitindo a execução do sistema em dispositivos móveis já pertencentes ao estabelecimento, como smartphones. Dessa forma, a câmera integrada aos aparelhos pode ser empregada para a leitura ótica dos códigos de barras dos itens, simplificando os procedimentos de cadastro (Figura 2) e checkout (Figura 3) sem demandar a aquisição de periféricos dedicados ou investimentos em infraestrutura adicional, o que minimizou os custos iniciais e viabilizou a realização de testes operacionais.
+2.5 Metodologia
+A pesquisa tem abordagem qualitativa e natureza aplicada, pois busca uma solução para um problema concreto de um estabelecimento real (WAZLAWICK, 2014). O trabalho seguiu as etapas do Design Thinking adotadas no Projeto Integrador (ouvir, interpretar, criar, prototipar, implementar e testar), com desenvolvimento em ciclos curtos inspirados no Scrum (RUBIN, 2017). A Tabela 2 relaciona cada etapa às atividades realizadas e às evidências que as sustentam; os resultados de cada etapa são apresentados no capítulo 3.
+Tabela 2 – Etapas do Design Thinking e atividades realizadas
+Etapa
+Atividades realizadas
+Evidência ou produto
+Seção
+Ouvir
+Observação presencial da rotina e entrevista semiestruturada com o proprietário (18 perguntas abertas e 9 itens de caracterização)
+Roteiro e respostas (Apêndice B)
+2.5.1, 2.5.2 e 3.1
+Interpretar
+Leitura das respostas, organização em cinco eixos temáticos, identificação de necessidades e restrições, priorização
+Tabela 4 (das evidências aos requisitos)
+2.5.3 e 3.1
+Criar
+Definição dos requisitos, do escopo do MVP e comparação com soluções existentes
+Tabelas 4 e 8
+2.5.4 e 2.6.2
+Prototipar
+MVP inicial em setembro e evolução em ciclos curtos em outubro e novembro de 2026
+Figuras 1 a 12; histórico do repositório; Tabela 9
+2.6 e 3.2
+Implementar e testar
+Publicação em nuvem, testes internos de leitura, verificação funcional e teste de usabilidade com o proprietário
+
+
+Tabelas 5, 13 e 14; roteiro (Apêndice A)
+2.5.5 e 3.3
+Validar com a comunidade
+Registro das sugestões do proprietário e das decisões do grupo
+Tabela 15
+2.5.6, 3.3.2 e 3.3.3
+
+Fonte: Elaborado pelos autores (2026).
+2.5.1 Ouvir – o contexto do estabelecimento
+O estudo foi realizado no Minimercado Gomeri, estabelecimento familiar de pequeno porte em São Bernardo do Campo (SP), com 22 anos de funcionamento; o atual proprietário, Kevin de Moura Ribeiro, relatou estar à frente do negócio há 12 anos. O minimercado atende à comunidade do entorno com processos predominantemente manuais, e o controle de vendas e de estoque se baseia em estimativas e na experiência dos operadores.
+2.5.2 Ouvir – procedimentos da entrevista
+A coleta foi feita por meio de entrevista semiestruturada com um único participante, o proprietário do estabelecimento. A entrevista foi escolhida por permitir obter informações diretamente do sujeito pesquisado sobre sua rotina e suas dificuldades (SEVERINO, 2002).
+O grupo preparou um roteiro com 18 perguntas abertas e 9 itens de caracterização do estabelecimento (Apêndice B). As perguntas foram organizadas em cinco eixos, para garantir que todos os aspectos relevantes ao sistema fossem abordados (Tabela 3).
+
+Tabela 3 – Eixos temáticos da entrevista
+Eixo temático
+Perguntas
+O que se buscava entender
+Estoque e reposição
+1, 18 e caracterização (compras)
+Como o estoque é controlado e como os produtos chegam com lote e validade
+Caixa e finanças
+2, 5, 7, 8, 9 e 10
+Como entradas, saídas, vendas fiado e pagamentos a fornecedores são controlados
+Rotina e equipe
+3, 4, 6 e 15
+Quem faz o quê, carga de trabalho e tarefas indesejadas
+Experiência com tecnologia
+11, 12, 13 e 14
+Por que o sistema anterior foi abandonado e o que geraria confiança em um novo
+Infraestrutura e custos
+16 e 17
+Acesso à internet e disposição para pagar pelo serviço
+
+Fonte: Elaborado pelos autores (2026).
+A entrevista foi realizada por mensagens e áudios no WhatsApp, em 3 de setembro de 2026, com duração aproximada de 30 minutos. As respostas foram registradas por escrito pelo grupo e consolidadas no documento reproduzido no Apêndice B. No mesmo dia, antes da entrevista, um integrante do grupo observou presencialmente a rotina do estabelecimento e constatou o uso da calculadora de balcão nas vendas, de cadernos de fiado e de notas de compra. As informações sobre a rotina vêm, portanto, do relato do proprietário e dessa observação.
+
+2.5.3 Interpretar – análise das informações
+As respostas foram analisadas em quatro passos:
+Leitura integral das respostas por todos os integrantes;
+Associação de cada resposta a um dos cinco eixos da Tabela 3;
+Identificação das necessidades e restrições expressas pelo proprietário, confrontadas com a fundamentação teórica;
+Priorização de cada necessidade segundo o impacto na rotina, a viabilidade dentro do MVP e a aderência ao tema do projeto.
+A Tabela 4 mostra como esses achados foram transformados em requisitos funcionais (RF) e não funcionais (RNF). Os achados que resultaram dessa análise estão descritos na seção 3.1.
+Tabela 4 – Das evidências da entrevista aos requisitos do sistema
+Evidência (pergunta)
+Necessidade identificada
+Requisito
+Controle apenas visual (1); sem levantamento de quantidades
+Saber o que existe em estoque
+RF01 – Cadastrar produtos e consultar o estoque
+Lote e validade na caixa e no produto (18)
+Registrar validades sem esforço extra
+RF02 – Registrar lotes com validade e quantidade na entrada
+Preocupação com o tempo de baixas de estoque (13)
+Atualizar o estoque sem registro manual
+RF03 – Dar baixa automática no estoque ao finalizar a venda, priorizando o lote que vence antes
+Perdas por vencimento (tema do projeto)
+Ser avisado antes do vencimento
+RF04 – Alertar sobre produtos próximos do vencimento e abaixo do estoque mínimo
+Caixa sem controle (2, 7, 10)
+Saber quanto entrou e saiu
+RF05 – Registrar movimentações de caixa e consultar o saldo
+Calculadora mais ágil que o sistema anterior (11, 13, 14)
+Vender tão rápido quanto hoje
+RNF01 – Concluir uma venda em tempo não superior ao da calculadora
+Equipe de duas pessoas sem divisão de funções (4)
+Ambos usarem o sistema sem treinamento
+RNF02 – Interface única e simples, utilizável sem treinamento formal
+Recusa a pagar mensalidades ou taxas (17)
+Nenhum custo para o estabelecimento
+RNF03 – Funcionar nos aparelhos existentes e em infraestrutura gratuita
+Acesso à internet disponível (16)
+Acesso de qualquer aparelho
+RNF04 – Aplicação web acessível pelo navegador
+Fiado em caderno (8); boletos controlados pelo banco (9)
+Já possuem solução própria
+Fora do escopo do MVP, possível evolução futura
+
+Fonte: Elaborado pelos autores (2026).
+
+2.5.4 Criar e prototipar
+Com os requisitos definidos, o grupo delimitou o escopo do MVP às funções com maior impacto na rotina e maior viabilidade técnica: cadastro de produtos, controle de lotes e validades, venda com baixa automática do estoque e consulta de estoque. O controle de fiado e de fornecedores ficou fora do escopo, pois o proprietário já tem soluções que considera suficientes.
+A interface foi pensada para o celular e para o atendimento de balcão: telas com poucos campos, botões grandes, leitura do código pela câmera, com alternativa de digitação, e preenchimento automático de nome e marca pela base Open Food Facts. A comparação com as soluções existentes (seção 2.6.2) reforçou a opção por um sistema focado, em vez de um sistema de gestão completo.
+O protótipo foi construído em ciclos curtos, registrados no histórico do repositório Git. A primeira versão, de setembro de 2026, é apresentada na seção 2.6; a evolução realizada em outubro e novembro, que resultou na solução final, é apresentada no capítulo 3.
+2.5.5 Implementar e testar
+Os testes foram organizados em duas fases: testes internos, feitos pelo grupo para verificar o funcionamento técnico, e um teste de usabilidade com o proprietário, no estabelecimento, para verificar se o sistema atende aos requisitos levantados na entrevista.
+Testes internos de leitura: O objetivo foi verificar se a câmera do celular lê os códigos de barras de forma confiável nas condições de um minimercado. O grupo selecionou 10 produtos com características que podem afetar a leitura: tamanho do código, material da embalagem (papel, plástico, metal, vidro), formato da superfície (plana ou curva) e posição do código. Cada produto foi lido na tela de cadastro, em modelo de celular Android Samsung S25, sob três condições de luz: iluminação ambiente comum, baixa luminosidade e luz intensa direta. Considerou-se leitura bem-sucedida aquela em que o código correto aparecia no campo sem necessidade de digitação. Os resultados estão na Tabela 5.
+Tabela 5 – Resultados dos testes internos de leitura
+Condição testada
+Resultado observado
+Encaminhamento
+Código de tamanho padrão em superfície plana, luz ambiente
+Leitura correta (Figuras 1 e 3)
+Nenhum
+Código pequeno em superfície curva (latas, frascos)
+Falhas frequentes de leitura
+Digitação do código como alternativa; processamento de imagem como melhoria futura
+Baixa luminosidade
+Leitura difícil ou impossível
+Orientar o uso em local iluminado; avaliar acionamento da lanterna do celular
+Luz intensa sobre embalagem reflexiva
+Reflexos impediram a leitura
+Inclinar a embalagem; leitor óptico dedicado como alternativa
+Produto ausente da base Open Food Facts
+Código lido, mas nome e marca não preenchidos
+Preenchimento manual; avaliar bases complementares (seção 2.6.3)
+
+Fonte: Elaborado pelos autores (2026).
+Verificação funcional: Cada fluxo principal da versão final (cadastro, entrada de lote, venda, registro de caixa e consultas da API) foi executado sobre um banco de dados criado do zero com produtos de exemplo, conferindo-se o estado do estoque, das vendas e do caixa após cada operação.
+Teste de usabilidade com o proprietário: Os testes internos não mostram se o sistema é viável na rotina real. Por isso, foi planejada uma sessão de cerca de 75 minutos no próprio minimercado, em horário de pouco movimento, com o proprietário usando seu próprio celular. A sessão tem três objetivos, ligados diretamente aos achados da entrevista:
+Verificar se uma venda pelo sistema leva no máximo o mesmo tempo que na calculadora (RNF01), condição apontada pelo proprietário para adotar qualquer sistema;
+Verificar se cadastro, entrada de lote e venda são concluídos sem ajuda (RNF02);
+Identificar pontos de confusão, mensagens mal compreendidas e funções que faltam.
+O proprietário realiza tarefas reais, descritas em linguagem do dia a dia, sem que o moderador indique o caminho na tela. Durante a execução, ele é convidado a falar o que pensa. Para cada tarefa, registram-se o resultado (concluída sozinho, concluída com ajuda ou não concluída), o tempo, os erros e uma nota de facilidade de 1 a 7. Ao final, aplica-se a escala System Usability Scale (SUS), questionário de dez itens que gera uma pontuação de 0 a 100 (BROOKE, 1996), seguida de uma conversa aberta. A Tabela 6 resume as tarefas; o roteiro completo, com fichas de registro e questionário, está no Apêndice A.
+Tabela 6 – Tarefas do teste de usabilidade com o proprietário
+Tarefa
+O que o proprietário faz
+Requisito avaliado
+Medida principal
+T1
+Abre o sistema no celular
+RNF02, RNF04
+Concluída sem ajuda; tempo
+T2
+Cadastra um produto encontrado na base, lendo o código pela câmera
+RF01, RF02
+Concluída sem ajuda; tempo; erros de preenchimento
+T3
+Cadastra um produto que a base não reconhece
+RF01
+Percebe que precisa digitar o nome?
+T4
+Cadastra um produto com código difícil de ler
+RF01
+Usa a digitação como alternativa? Tentativas de leitura
+T5
+Registra um novo lote de um produto já cadastrado
+RF02
+Encontra a função? Tempo
+T6
+Consulta quantas unidades há de um produto e quando vencem
+RF01, RF04
+Resposta correta; tempo
+T7
+Faz uma venda de um item
+RF03, RNF01
+Tempo da leitura à finalização
+T8
+Faz uma venda de cinco itens, um deles com duas unidades
+RF03, RNF01
+Tempo comparado à calculadora; total correto
+T9
+Faz a mesma venda da T8 na calculadora
+RNF01
+Tempo de referência
+T10
+Corrige um item lançado por engano na venda
+RNF02
+Como reage à falta dessa função
+T11
+Tenta vender um produto sem estoque
+RF03
+Entende a mensagem?
+T12
+Altera o preço de venda de um produto
+RF01
+Concluída sem ajuda; tempo
+
+Fonte: Elaborado pelos autores (2026).
+A sessão foi realizada no dia 22 de outubro de 2026. Seus resultados foram incorporados a este relatório nas mesmas categorias acima: taxa de conclusão por tarefa, tempo médio, comparação com a calculadora, pontuação SUS e lista de problemas classificados por gravidade.
+2.5.6 Validação com a comunidade externa
+A participação da comunidade externa seguiu três passos:
+Sessão de teste: O proprietário usa o sistema conforme o Apêndice A e faz comentários livres; o grupo registra cada sugestão ou queixa.
+Decisão do grupo: Cada sugestão é classificada como implementar agora, implementar em versão futura ou não implementar, com justificativa baseada nos requisitos da Tabela 4, no esforço técnico e no escopo do MVP.
+Retorno ao proprietário: Em novo contato com o proprietário, o grupo apresenta o que mudou e pede um novo feedback, verificando se o problema foi resolvido.
+2.6 Resultados preliminares: solução inicial 
+A entrevista com o proprietário e as análises do grupo evidenciaram dois problemas recorrentes na gestão do estoque: as perdas por vencimento de produtos e a falta de mercadorias nas gôndolas. Também ficou claro que qualquer solução precisaria ser de fácil aprendizado, ter pouco impacto na rotina atual e não gerar custos para o estabelecimento, dadas a carga de trabalho elevada e a recusa do proprietário em pagar mensalidades.
+Com base nesses requisitos, o grupo desenvolveu em setembro de 2026 um primeiro MVP web, com duas telas. A tela de estoque reunia o cadastro de produtos (código de barras, nome, quantidade e preço), a leitura do código pela câmera do celular e a lista dos produtos em estoque, com opção de exclusão (Figuras 1 e 2). A tela de venda permitia ler os itens, ver o total e finalizar a venda, o que reduzia a quantidade em estoque de cada produto (Figura 3). A opção pela web permitiu usar os smartphones já disponíveis no estabelecimento, dispensando a compra de periféricos.
+Figura 1 – Tela de cadastro de produto com leitura do código de barras pela câmera (MVP de setembro)
+
+Fonte: Elaborado pelos autores (2026). 
+Figura 2 – Tela de cadastro (quantidade e preço) e consulta do estoque atual
 
 
 Fonte: Elaborado pelos autores (2026). 
 
-Fonte: Elaborado pelos autores (2026). 
+
+
+Figura 3 – Tela de venda com definição de preços e finalização
 
 Fonte: Elaborado pelos autores (2026). 
-
-
-	Para o desenvolvimento do MVP, adotou-se um conjunto de tecnologias e serviços criteriosamente selecionados com base nos requisitos da solução proposta. Utilizou-se o framework Django como infraestrutura para a aplicação web e para a implementação da lógica de negócios no ambiente do servidor. No tocante ao front-end, empregaram-se HTML e JavaScript para a estruturação da interface do usuário e execução das rotinas no navegador. O processo de cadastramento de mercadorias foi otimizado mediante a integração de uma API aberta dedicada a produtos alimentícios (Open Food Facts), a qual viabilizou a recuperação automatizada de dados operacionais a partir do escaneamento do código de barras, mitigando a necessidade de inserção manual de informações. Por fim, a infraestrutura da plataforma Google Cloud foi empregada para a hospedagem do sistema em nuvem, garantindo sua disponibilidade remota e a acessibilidade contínua pelos dispositivos operados no estabelecimento.
-	Mediante a validação do MVP, delineia-se a possibilidade de expansão do sistema por meio da incorporação progressiva de novas funcionalidades. Entre as melhorias prioritárias, destacam-se a gestão de estoque e o monitoramento automatizado dos prazos de validade das mercadorias, aspectos fundamentais apontados no diagnóstico inicial e nas entrevistas conduzidas junto aos envolvidos. Adicionalmente, prevê-se a implementação de módulos voltados ao registro detalhado das movimentações de inventário — considerando variações nos valores de aquisição e alienação —, bem como o histórico de vendas e a emissão de relatórios gerenciais sintéticos para suporte à tomada de decisão financeira. A integração desses componentes viabilizaria a transição gradual do MVP para uma plataforma de gestão comercial robusta, alinhada às arquiteturas de sistemas de automação e gestão integrada (ERP). Embora tal abrangência transcenda o escopo e as necessidades imediatas identificadas no Minimercado Gomeri para esta etapa da pesquisa, compreende-se que esse roteiro de evolução estabelece diretrizes replicáveis para outros estabelecimentos do setor varejista ou para empreendimentos correlatos que demandem uma gestão operacional mais abrangente.
-
-2.5.1 Benchmark de sistemas concorrentes e marcas similares
-Tabela 1 – Matriz comparativa entre ferramentas de mercado e a solução proposta. 
-Categoria / Solução
-Vantagens Identificadas 
-Limitações Frente ao Micromercado
-Sistemas comerciais populares (como MarketUP, Bling, Conta Azul).
-Módulos completos e integrados (PDV, emissão de documentos fiscais e fluxo de caixa); 
-Disponibilidade de planos de entrada gratuitos ou de baixo custo. 
-Elevada curva de aprendizagem e excesso de interfaces burocráticas;
-Sobrecarga cognitiva no momento do atendimento no balcão;
-Ausência de foco em alertas operacionais rápidos para validação e reposição.
-Registros Manuais e Planilhas Eletrônicas (Papel, Caderno, Excel).
-Custo de aquisição nulo;
-Alta familiaridade do operador e baixa barreira técnica;
-Flexibilidade imediata na organização visual dos dados.
-Ausência de automatização e rotinas repetitivas de controle;
-Inexistência de mecanismos proativos de alerta para datas de vencimento;
-Alto risco de erro humano, falta de integridade e perda de dados operacionais.
-Solução Proposta (Aplicação Web / MVP).
-Interface minimalista e orientada ao ritmo diário de atendimento, com foco específico nas dores críticas: prevenção de rupturas e controle de validade. Além de isenção de custos operacionais e facilidade de acesso via navegador.
-Escopo estritamente delimitado às necessidades prioritárias do estudo de caso e ausência inicial de módulos fiscais ou financeiros complexos.
+Essa primeira versão confirmou a viabilidade técnica da leitura pela câmera e do uso pelo navegador, mas tinha limitações importantes diante dos requisitos da Tabela 4: o estoque era um número único por produto, sem lote nem validade (RF02 e RF04); a venda não ficava registrada, apenas reduzia a quantidade (RF05); não havia como corrigir um item lançado por engano; e o nome do produto precisava ser digitado, embora o servidor já tivesse uma rota de consulta à base Open Food Facts. Essas limitações orientaram o trabalho de outubro, descrito no capítulo 3.
+2.6.1 Tecnologias utilizadas no MVP e alternativas para melhorias futuras
+O MVP foi construído com Python e o framework Django, que concentra a aplicação web e as regras de negócio no servidor. A interface usa HTML, CSS e JavaScript, com a biblioteca html5-qrcode para a leitura dos códigos de barras pela câmera. Os dados são armazenados em banco relacional SQLite, e a aplicação é empacotada em container Docker e publicada no Google Cloud Run, com as imagens armazenadas no Google Artifact Registry. A API pública Open Food Facts é usada para obter nome e marca do produto a partir do código lido.
+A Tabela 7 separa o que já está em uso do que foi apenas avaliado como alternativa. As tecnologias da última coluna não fazem parte da solução: serão consideradas apenas se surgir uma necessidade concreta.
+Tabela 7 – Tecnologias utilizadas no MVP e alternativas para melhorias futuras
+Camada
+Utilizado no MVP
+Considerado para melhorias futuras
+Back-end e regras de negócio
+Python 3.12 e Django
+FastAPI (Python) ou Node.js com Express, caso a API venha a ser separada da aplicação web
+Front-end
+HTML, CSS e JavaScript, sem framework
+React, caso a interface ganhe mais telas e interações
+Leitura de código de barras
+Câmera do celular com a biblioteca html5-qrcode e digitação manual do código
+Leitores ópticos dedicados e técnicas de processamento de imagem
+Dados de produtos
+API Open Food Facts
+Bases da GS1 Brasil ou da DotCompany
+Infraestrutura
+Docker, Google Cloud Run e Google Artifact Registry
+Render, Fly.io, Supabase ou Neon.tech (back-end e banco) e Vercel (interface)
 
 Fonte: Elaborado pelos autores (2026). 
-2.5.2 Stacks tecnológicas para melhorias indicadas
-Back-End & Framework Web: Utilização de Node.js com Express ou, alternativamente, FastAPI com Python, visando maior facilidade técnica e agilidade no desenvolvimento.
-Front-End: Desenvolvimento com HTML5, CSS3 e JavaScript (seja via Vanilla ou React), priorizando uma interface leve, altamente responsiva e adaptável a diferentes dispositivos.
-Banco de Dados: Sistemas relacionais como PostgreSQL, SQLite MySQL para garantir o gerenciamento consistente e robusto das entidades centrais (produtos, categorias, lotes, validades, movimentações de estoque e controle de usuários).
-Infraestrutura e Hospedagem em Nuvem: Adoção de serviços gratuitos ou voltados ao meio acadêmico, tais como Render, Fly.io, Supabase ou Neon.tech para o back-end e APIs, combinados com a Vercel para a publicação da interface web.
+2.6.2 Benchmark de sistemas concorrentes
+A Tabela 8 compara a solução proposta com as alternativas disponíveis para o pequeno varejo.
+Tabela 8 – Matriz comparativa entre ferramentas de mercado e a solução proposta
+Categoria / solução
+Vantagens identificadas
+Limitações para o minimercado
+Sistemas comerciais populares (MarketUP, Bling, Conta Azul)
+Módulos completos e integrados (PDV, emissão de documentos fiscais e fluxo de caixa); planos de entrada gratuitos ou de baixo custo
+Curva de aprendizagem elevada e excesso de telas; sobrecarga no atendimento de balcão; pouco foco em alertas rápidos de validade e reposição
+Registros manuais e planilhas (papel, caderno, Excel)
+Custo de aquisição nulo; alta familiaridade do operador; flexibilidade na organização dos dados
+Ausência de automação; nenhum alerta de vencimento; alto risco de erro humano e de perda de dados
+Solução proposta (aplicação web / MVP)
+Interface minimalista, adequada ao ritmo do atendimento e focada em validade e reposição; baixo custo; acesso pelo navegador
+Escopo restrito às necessidades prioritárias do estudo de caso; sem módulos fiscais ou financeiros completos
+
+Fonte: Elaborado pelos autores (2026).
+2.6.3 Avaliação de APIs terceiras
+A integração com a API Open Food Facts já está em uso no cadastro de produtos. Como os dados dependem do que está cadastrado nessa base colaborativa, nem todos os produtos são encontrados; nesses casos, nome e marca precisam ser preenchidos manualmente.
+Outras integrações foram levantadas e ainda não fazem parte do MVP:
+Bases de dados de produtos (GS1 Brasil, DotCompany), para ampliar o preenchimento automático a partir do código de barras;
+API de mensagens do WhatsApp, para enviar avisos de estoque baixo ou de vencimento próximo;
+API de cotação de preços, caso se mostre útil para apoiar as compras;
+A decisão sobre cada integração considerará a utilidade prática para o estabelecimento, a viabilidade técnica, o custo e a disponibilidade do serviço e o impacto no escopo do MVP. Integrações sem benefício claro serão mantidas como possibilidades futuras.
+3 Resultados: solução final
+Este capítulo apresenta os resultados de cada passo da metodologia (ouvir, criar e implementar) e a solução final construída a partir deles. A seção 3.1 resume o que a escuta revelou; a seção 3.2 descreve como o MVP de setembro evoluiu em outubro e novembro; a seção 3.3 apresenta a verificação, o teste com o proprietário, os ajustes feitos a partir dele e as pendências.
+
+3.1 Fase inicial – escuta e interpretação
+A observação presencial e a entrevista com o proprietário, analisadas conforme a seção 2.5.3, produziram seis achados principais:
+Agilidade é a condição decisiva para a adoção: O sistema anterior foi abandonado porque a calculadora de balcão era mais rápida (pergunta 11), e o proprietário só adotaria um sistema que não tomasse mais tempo do que a forma atual de trabalho (perguntas 13 e 14).
+Não há barreira de confiança, mas há baixa motivação e nenhuma disposição a pagar: O proprietário não desconfia da tecnologia (pergunta 12), mas não assumiria mensalidades nem taxas e afirmou não ver necessidade real de automação no momento (pergunta 17).
+O estoque não é medido: O controle é visual (pergunta 1), não há levantamento de quantidades e as compras são feitas conforme os pedidos dos clientes (caracterização).
+Lote e validade estão disponíveis na entrada: Na maioria dos casos, essas informações vêm tanto na caixa fechada quanto em cada produto (pergunta 18), o que permite registrá-las no recebimento.
+O caixa não é controlado: O dinheiro do dia paga as contas imediatas (pergunta 2), não há cálculo de lucro (pergunta 7) e diferenças de caixa não são identificadas (pergunta 10).
+Outras rotinas já têm solução própria: Os boletos de fornecedores maiores são controlados pelo banco digital (pergunta 9) e o fiado, em caderno (pergunta 8).
+Uma resposta da caracterização foi ambígua: o proprietário afirmou fazer controle de fluxo de pessoas, mas não soube informar a quantidade de clientes. O grupo interpretou como ausência de contagem sistemática.
+O resultado desta fase foi o conjunto de requisitos da Tabela 4. Dois achados tiveram peso especial nas decisões seguintes. O primeiro é que a solução precisava provar que não atrasa o atendimento: por isso, a venda foi desenhada para exigir apenas a leitura dos itens e um toque para finalizar, e a baixa de estoque passou a ser automática. O segundo é que lote e validade já chegam impressos nas embalagens: por isso, o registro de validade foi colocado no momento em que a mercadoria entra, e não como uma tarefa separada.
 
 
-2.5.3 Mapeamento e definição de APIs
-Para viabilizar a comunicação entre a aplicação e o banco de dados, o grupo definiu que será desenvolvida uma API própria. Essa API vai centralizar as regras de negócio e disponibilizar os dados necessários para o funcionamento do sistema, especialmente para o controle de estoque, validade e reposição de mercadorias no Minimercado Gomeri.
-Os endpoints da API serão definidos a partir das funcionalidades previstas para o MVP e do modelo de dados que está sendo elaborado pelo grupo. Por enquanto, foram levantados os seguintes recursos principais:
-- Produtos: cadastro e consulta de produtos;
-- Estoque: consulta e atualização das quantidades disponíveis;
-- Vendas: registro e consulta das movimentações de vendas;
-- Caixa: registro e consulta das movimentações relacionadas ao caixa.
-A ideia é seguir o padrão REST, com endpoints específicos para cada recurso. Como exemplos iniciais, temos GET /produtos, POST /produtos, GET /produtos/{id} e GET /estoque. Os endpoints finais poderão sofrer ajustes conforme o MVP se manter sendo consolidado e o modelo de dados, posteriormente, fechado.
-O objetivo é que a API ajude a resolver problemas reais do estabelecimento, centralizando as informações de produtos, vendas e estoque. Assim, ao registrar uma venda, o sistema poderá atualizar automaticamente a quantidade disponível do produto e ajudar a identificar itens que estão abaixo do estoque mínimo.
-Nesta etapa, o foco foi planejar os recursos principais da API, sem entrar em detalhes de implementação, que serão tratados nas próximas quinzenas do projeto.
-2.5.4 Avaliação de APIs terceiras
-Além da API própria, o grupo também vai avaliar se vale a pena integrar alguma API de terceiros para complementar a solução. A intenção é usar integrações externas apenas se elas realmente ajudarem a atender as necessidades identificadas no Minimercado Gomeri.
-Entre as possibilidades que foram levantadas estão:
-- API de CEP: para facilitar o preenchimento de endereços no cadastro;
-- API de cotação ou preços: caso faça sentido para a aplicação;
-- API de WhatsApp: para enviar notificações sobre situações como estoque baixo.
-- API de base de dados de informações de produtos (GS1, DotCompany): para facilitar o cadastro de produtos, com o autocompletar de informações a partir da leitura do código de barras.
-A decisão sobre quais integrações serão implementadas vai levar em conta a utilidade prática para o projeto, a viabilidade técnica, a disponibilidade dos serviços e o impacto no escopo do MVP. Se alguma integração não trouxer benefício claro ou acabar complicando demais o sistema, a ideia é deixar essa funcionalidade para uma etapa futura como melhoria, fora do MVP.
+3.2 Prototipação e desenvolvimento
+3.2.1 Evolução do protótipo
+A partir das limitações do MVP de setembro (seção 2.6), o grupo trabalhou em ciclos curtos ao longo de outubro de 2026. Cada entrega foi registrada no repositório Git do projeto, e parte delas foi desenvolvida em uma ramificação separada para a API, integrada à versão principal em 15 de outubro. A Tabela 9 resume as entregas e os requisitos atendidos por cada uma.
+Tabela 9 – Evolução do protótipo ao longo de outubro e no início de novembro de 2026
+Data
+Entrega
+Requisito atendido
+8/10
+Documentação de instalação e uso (README) e ajustes nas telas de estoque e de venda
+—
+9/10
+Tabelas de venda e de itens da venda no banco de dados
+RF05
+10/10
+Tabela de lotes para controle de validade
+RF02
+12/10 e 13/10
+Primeiros endpoints da API própria (produtos, estoque, vendas e caixa) e proteção contra requisições forjadas (CSRF)
+RF04 (parcial), RF05
+13/10
+Tela de cadastro separada, com o primeiro lote (número, validade, quantidade e preço de compra) e preenchimento automático de nome e marca pela Open Food Facts; a quantidade do produto passa a ser a soma dos lotes
+RF01, RF02
+14/10
+Tela de edição de produto e de lotes; venda com baixa pelo lote de vencimento mais próximo e bloqueio de lotes vencidos
+RF02, RF03
+17/10
+Registro de cada venda com seus itens; entrada automática no caixa a cada venda e saída automática a cada lote comprado; remoção de item durante a venda; cadastro direto a partir da venda quando o código não existe; versão fixa da biblioteca de leitura
+RF03, RF05, RNF01, RNF02
+18/10
+Correções da verificação funcional: a venda recusada passa a desfazer todas as alterações; os preços de venda e de compra aparecem preenchidos na edição; a migração duplicada é removida, permitindo instalar o sistema do zero; arquivo sem uso é retirado do projeto
+RF03, RNF02
+29/10
+Ajuste após o teste com o proprietário: o intervalo em que um mesmo código é ignorado após a leitura passa de 1 para 1,5 segundo na tela de venda, evitando o lançamento duplicado do item; na tela de cadastro, o mesmo código volta a poder ser lido após 1,5 segundo
+RNF01, RNF02
+05/11
+Ajustes após o teste com o proprietário: painel inicial com lotes vencidos, lotes a vencer em 7 dias e produtos abaixo do estoque mínimo; tela de vencimentos com filtro de 3, 7, 15 ou 30 dias; tela de estoque baixo; coluna de próxima validade na tela de estoque; estoque mínimo editável na tela de edição; acesso por login, com cadastro de usuários pelo administrador do mercado
+RF04, RNF02
 
+Fonte: Elaborado pelos autores (2026), com base no histórico do repositório.
+3.2.2 Modelo de dados
+A principal mudança de outubro foi no modelo de dados. No MVP de setembro, cada produto tinha um único campo de quantidade. Na versão final, o estoque passou a ser organizado por lotes e as vendas e o caixa passaram a ser registrados, em cinco entidades relacionadas (Tabela 10).
+Tabela 10 – Entidades do modelo de dados da versão final
+Entidade
+O que registra
+Relação com as demais
+Produto
+Código de barras (único), nome, marca, preço de venda e estoque mínimo; a quantidade é calculada pela soma dos lotes
+Tem vários lotes e aparece em vários itens de venda
+Lote
+Número do lote, data de validade, quantidade e preço de compra por unidade
+Pertence a um produto
+Venda
+Data e hora e valor total
+Tem vários itens e pode gerar uma movimentação de caixa
+Item da venda
+Produto, quantidade vendida e preço unitário no momento da venda
+Pertence a uma venda
+Movimentação de caixa
+Tipo (entrada ou saída), valor, descrição e data
+Pode estar ligada a uma venda
+
+Fonte: Elaborado pelos autores (2026)
+Duas escolhas seguem os princípios de projeto de banco de dados discutidos na fundamentação (ELMASRI; NAVATHE, 2018). A quantidade do produto não é gravada separadamente, mas calculada a partir dos lotes, o que evita que os dois valores fiquem diferentes. E o item da venda guarda o preço praticado naquele momento, de modo que uma mudança de preço posterior não altera o histórico de vendas.
+3.2.3 Telas da versão pré-feedback com o proprietário
+A versão pré-feedback tem quatro telas, acessadas por dois botões fixos na parte de baixo: Estoque e Venda. As Figuras 4, 5 e 7 foram capturadas da versão de 17 de outubro e a Figura 6, da versão de 18 de outubro, já com a correção do preço, todas com produtos de exemplo.
+A tela de estoque (Figura 4) lista os produtos com código, nome, marca, preço e quantidade total, e dá acesso ao cadastro de novos produtos e à edição de cada um.
+
+
+Figura 4 – Tela de estoque da versão pré-feedback
+
+Fonte: Elaborado pelos autores (2026)
+O cadastro (Figura 5) foi separado da tela de estoque e passou a registrar o primeiro lote junto com o produto. Ao ler o código pela câmera, o sistema consulta a base Open Food Facts e preenche nome e marca, quando disponíveis. A data de validade é digitada no formato dia/mês/ano, e o preço de compra gera automaticamente uma saída no caixa.
+
+Figura 5 – Tela de cadastro de produto e do primeiro lote
+
+Fonte: Elaborado pelos autores (2026)
+A tela de edição (Figura 6) mostra os dados do produto e a lista de lotes cadastrados, com validade e quantidade de cada um, e permite registrar a chegada de um novo lote sem recadastrar o produto. O código de barras não pode ser alterado.
+Figura 6 – Tela de edição de produto e gestão de lotes
+
+Fonte: Elaborado pelos autores (2026)
+Na tela de venda (Figura 7), cada item é lido pela câmera ou digitado, com campo de quantidade. Cada linha tem um botão para remover o item, com confirmação, e o total é atualizado na hora. Se o código lido não estiver cadastrado, o sistema oferece abrir o cadastro com o código já preenchido. Ao finalizar, a venda é registrada com seus itens, o estoque é baixado pelos lotes de vencimento mais próximo e o valor entra no caixa.
+Figura 7 – Tela de venda da versão pré-feedback, com remoção de itens
+
+Fonte: Elaborado pelos autores (2026)
+3.2.4 API própria
+Para centralizar as regras de negócio e permitir futuras integrações, o grupo desenvolveu uma API própria em Django, seguindo o padrão REST e trocando dados em formato JSON (Tabela 11).
+Tabela 11 – Endpoints da API própria
+Recurso
+Endpoint
+Métodos
+Função
+Produtos
+/mercado/api/produtos/
+GET, POST
+Listar e cadastrar produtos
+Produtos
+/mercado/api/produtos/{código}/
+GET
+Consultar um produto pelo código de barras
+Estoque
+/mercado/api/estoque/
+GET
+Listar o estoque e os itens abaixo do mínimo
+Vendas
+/mercado/api/vendas/
+GET
+Listar as vendas registradas
+Vendas
+/mercado/api/vendas/{id}/
+GET
+Consultar uma venda e seus itens
+Caixa
+/mercado/api/caixa/movimentações/
+GET, POST
+Listar e registrar entradas e saídas de caixa
+Caixa
+/mercado/api/caixa/saldo/
+GET
+Consultar o saldo do caixa
+
+Fonte: Elaborado pelos autores (2026).
+Na solução pré-feedback a API é usada principalmente para consulta: ela entrega o que as telas ainda não mostram, como a indicação de produtos abaixo do estoque mínimo, o histórico de vendas e o saldo do caixa. As operações de estoque e de venda são feitas pelas telas, que aplicam as regras de lote e de caixa descritas nesta seção.
+3.2.5 Integração da API com planilha de acompanhamento
+Para verificar o uso da API por outros sistemas, o grupo criou uma planilha no Google Planilhas que consulta os endpoints de estoque, vendas e caixa (Tabela 11). Ao acionar o botão Atualizar, a planilha busca os dados mais recentes e os organiza em quatro abas. A aba Resumo funciona como painel de controle (Figura 8): mostra o faturamento e as unidades vendidas nos últimos sete dias, a quantidade de produtos com estoque baixo e de lotes vencidos ou a vencer, o resumo financeiro do mês, um gráfico da evolução do faturamento, os produtos mais vendidos e as listas de atenção para estoque baixo e validades. As abas Estoque, Vendas e Movimentações trazem os registros que alimentam esse painel (Figura 9).
+A planilha mostra que a API entrega os dados de forma estruturada e reutilizável, sem acesso direto ao banco de dados. Ela também oferece uma visão do caixa, com entradas, saídas e saldo, que ainda não tem tela própria no sistema (RF05). As imagens foram capturadas em 21 de outubro de 2026, com os dados de teste registrados durante a verificação funcional.
+Figura 8 – Aba Resumo da planilha integrada à API
+ Fonte: Elaborado pelos autores (2026).
+
+Figura 9 – Abas Estoque, Vendas e Movimentações da planilha integrada à API
+
+Fonte: Elaborado pelos autores (2026).
+3.3 Implementar e validar
+A versão pré-feedback foi publicada no Google Cloud Run, em container Docker, e pode ser acessada pelo navegador do celular. A Tabela 12 mostra a situação de cada requisito da Tabela 4 nessa versão e na versão de 5 de novembro, esses alertas passaram a ser exibidos nas telas (seção 3.3.3).
+
+Tabela 12 – Requisitos e sua situação antes e depois do teste com o proprietário
+Requisito
+Como foi atendido
+Versão pré-feedback (18/10)
+Versão de 5/11
+RF01 – Cadastrar produtos e consultar o estoque
+Telas de cadastro, estoque e edição; preenchimento automático pela Open Food Facts
+Atendido
+Atendido
+RF02 – Registrar lotes com validade na entrada
+Primeiro lote no cadastro e novos lotes na edição, com validade, quantidade e preço de compra
+Atendido
+Atendido
+RF03 – Baixa automática na venda, pelo lote que vence antes
+Baixa pelos lotes de vencimento mais próximo, com bloqueio de lotes vencidos; uma venda recusada não altera o estoque
+Atendido
+Atendido
+RF04 – Alertar sobre vencimento próximo e estoque baixo
+Antes: indicação apenas pela API. Depois: painel inicial com os três alertas, tela de vencimentos, tela de estoque baixo e coluna de próxima validade
+Parcial
+Atendido
+RF05 – Registrar movimentações de caixa e consultar o saldo
+Entradas e saídas registradas automaticamente; saldo e histórico disponíveis pela API, sem tela própria
+Parcial
+Parcial
+RNF01 – Venda tão rápida quanto na calculadora
+Venda com leitura e um toque para finalizar; no teste, 45 s no sistema contra 12 s na calculadora (seção 3.3.2)
+Parcial
+Parcial
+RNF02 – Uso sem treinamento formal
+Telas com botões grandes e mensagens em linguagem simples; depois, painel inicial com atalhos
+Atendido
+Atendido
+RNF03 – Nenhum custo para o estabelecimento
+Aparelhos existentes e camada gratuita da nuvem
+Atendido
+Atendido
+RNF04 – Acesso pelo navegador
+Aplicação web responsiva
+Atendido
+Atendido
+
+
+Fonte: Elaborado pelos autores (2026).
+3.3.1 Verificação funcional da versão pré-feedback
+A verificação foi feita em duas rodadas. Na primeira, em 17 de outubro de 2026, a execução dos fluxos sobre uma cópia local do banco de dados encontrou três falhas: uma venda recusada deixava baixas de estoque e uma venda de R$ 0,00 gravadas; o preço aparecia vazio na tela de edição; e um conflito entre migrações impedia instalar o sistema do zero. O grupo corrigiu as três em 18 de outubro. Na segunda rodada, no mesmo dia, os fluxos foram executados novamente sobre um banco criado do zero, com produtos de exemplo, conferindo-se o estoque, as vendas e o caixa após cada operação (Tabela 13).
+Tabela 13 – Verificação funcional da versão pré-feedback
+Fluxo verificado
+Resultado
+Situação
+Cadastro de produto com o primeiro lote
+Produto criado, quantidade igual à do lote e saída lançada no caixa (quantidade × preço de compra)
+Correto
+Venda pela tela
+Venda registrada com seus itens e total, estoque baixado pelos lotes e entrada lançada no caixa
+Correto
+Venda em que um item não tem estoque suficiente
+Venda recusada com mensagem, sem nenhuma alteração gravada: estoque, vendas, itens e caixa permanecem como antes
+Correto (corrigido em 18/10)
+Edição de produto
+Preço de venda e preço de compra dos lotes aparecem preenchidos (ex.: 7.99), sem necessidade de digitar novamente
+Correto (corrigido em 18/10)
+Consultas da API (estoque, vendas e saldo)
+Respostas corretas, com lotes e indicação de estoque baixo
+Correto
+Venda com um código não cadastrado
+Venda recusada com aviso, sem nenhuma alteração gravada
+Correto
+Criação do banco em uma instalação nova
+Todas as migrações aplicadas sem conflito
+Correto (corrigido em 18/10)
+
+Fonte: Elaborado pelos autores (2026).
+Todos os fluxos usados no balcão funcionaram como esperado na versão de 18 de outubro. A correção da tela de edição também foi conferida na versão publicada no Cloud Run; os testes que gravam dados foram feitos apenas na cópia local, para não alterar os dados de demonstração.
+3.3.2 Teste com o proprietário e devolutivas
+A sessão de teste com o proprietário, conduzida conforme o Apêndice A, ocorreu em 22 de outubro de 2026. A Tabela 14 apresenta os resultados por tarefa.
+Tabela 14 – Resultados do teste de usabilidade com o proprietário
+Tarefa
+Conclusão (S/A/N)
+Tempo (s)
+Erros
+Tentativas de leitura
+Facilidade (1–7)
+Observações e falas
+T1
+s
+5
+0
+–
+7
+–
+T2
+s
+51
+0
+1
+7
+–
+T3
+s
+80
+0
+1
+7
+Bom demais!
+T4
+a
+75
+0
+3
+7
+–
+T5
+a
+70
+0
+–
+7
+–
+T6
+a
+40
+0
+–
+7
+–
+T7
+s
+15
+0
+1
+7
+–
+T8
+s
+45
+0
+7
+7
+–
+T9
+s
+12
+–
+–
+7
+–
+T10
+a
+30
+3
+–
+5
+O produto lê 2x se ficar muito tempo apontado na câmera, uma correção a ser feita
+T11
+s
+5
+0
+1
+7
+–
+T12
+a
+10
+0
+–
+7
+–
+
+Fonte: Elaborado pelos autores (2026).
+Das doze tarefas, sete foram concluídas sem ajuda e cinco com ajuda; nenhuma deixou de ser concluída. A ajuda foi necessária no cadastro de um produto com código difícil de ler (T4), que exigiu três tentativas de leitura; no registro de um novo lote (T5) e na consulta da validade (T6), funções acessíveis apenas pela tela de edição do produto; na alteração do preço (T12); e na remoção de um item da venda (T10). Todas as tarefas receberam nota 7 de facilidade, com exceção da T10, que recebeu nota 5.
+A comparação entre as tarefas T8 e T9 mostra que a venda de cinco itens (seis unidades) levou 45 segundos no sistema e 12 segundos na calculadora. A hipótese H1, portanto, não se confirmou: o sistema foi cerca de 3,75 vezes mais lento, com média de 7,5 segundos por unidade contra 2 segundos na calculadora. Os tempos da calculadora são coerentes com as vendas reais observadas antes da sessão, entre 2 e 2,5 segundos por item (Ficha A.8).
+Esse resultado já era esperado pelo grupo. A calculadora exige apenas a digitação do preço, que o operador sabe de memória para os produtos de maior giro, e não registra nada além do total. O sistema, por sua vez, identifica o produto, consulta o banco de dados, baixa o estoque pelos lotes e lança a entrada no caixa a cada venda.
+Para situar o desempenho da leitura pela câmera, tomou-se como referência um estudo da consultoria U.S. Ergonomics encomendado pela fabricante de leitores Zebra Technologies (ZEBRA TECHNOLOGIES, 2022). Em tarefas de separação de pedidos, um coletor com leitor dedicado levou cerca de 3,7 segundos por leitura, e celulares comuns com um aplicativo comercial de leitura pela câmera levaram entre 4,9 e 6,0 segundos. O tempo de 7,5 segundos por unidade obtido pelo MVP está na mesma ordem de grandeza e inclui etapas que não fazem parte daquela medição, como o ajuste da quantidade de um item e a finalização da venda. Ressalva-se que o estudo foi encomendado por um fabricante de leitores dedicados e que a tarefa avaliada não é idêntica à venda de balcão. O MVP usa uma biblioteca gratuita e nenhum equipamento adicional, o que atende ao RNF03.
+Dessa forma, embora mais lenta do que a calculadora, a venda pelo sistema mantém um tempo compatível com o atendimento de balcão: 15 segundos para um item (T7) e 45 segundos para cinco itens (T8). Em troca desse tempo adicional, cada venda deixa o estoque atualizado em tempo real, com baixa pelo lote de vencimento mais próximo, além do registro da venda e da entrada no caixa. Com a calculadora, essas informações não existem: obtê-las exigiria contagens e anotações manuais que a rotina atual não comporta (Apêndice B, perguntas 1 e 2). Esse ganho não aparece na comparação de tempos e é a principal vantagem do sistema para o estabelecimento. A diferença de tempo pode ser reduzida com as melhorias de leitura indicadas na Tabela 7, como leitores ópticos dedicados.
+A pontuação na escala SUS foi de 87,5 pontos: as frases ímpares somaram 17 pontos e as pares, 18, e o total de 35 multiplicado por 2,5 resulta em 87,5. Por se tratar de um único participante, a nota não permite generalização, mas indica uma percepção de usabilidade muito positiva e serve de referência para comparar versões futuras testadas com o mesmo roteiro.
+Os principais problemas observados, com sua gravidade, foram:
+Leitura duplicada (alta): o item é lançado duas vezes quando a câmera permanece apontada para o produto. Gerou três erros na T10 e explica as sete tentativas de leitura registradas na T8 para seis unidades.
+Lote e validade pouco visíveis (média): o registro de novo lote e a consulta de validade não foram encontrados sem ajuda (T5 e T6), pois ficavam apenas na tela de edição do produto.
+Código em superfície curva (média): a leitura falhou na T4, confirmando o resultado dos testes internos (Tabela 5).
+Alteração de preço (baixa): a alteração do preço de venda exigiu ajuda (T12).
+As sugestões e queixas do proprietário e as decisões do grupo estão na Tabela 15.
+Tabela 15 – Registro de sugestões da comunidade externa
+Nº
+Sugestão ou problema relatado
+Decisão do grupo
+Justificativa
+Versão em que foi tratado
+1
+Sistema lê o produto duas vezes ao apontar a câmera no item por tempo prolongado
+Aumentar de 1 para 1,5 segundo o intervalo em que o mesmo código é ignorado após uma leitura
+Evitar itens duplicados e correções durante a venda
+Versão de 29/10/2026
+2
+Adicionar tela com os vencimentos próximos
+Criar tela de vencimentos, resumo no painel inicial e coluna de próxima validade no estoque
+Evitar que o usuário verifique item por item; atende à parte de vencimentos do RF04
+Versão de 5/11/2026
+
+Fonte: Elaborado pelos autores (2026).
+3.3.3 Ajustes realizados após o teste
+As duas sugestões registradas na Tabela 15 foram implementadas após o teste com o proprietário, junto com outros ajustes que completam o RF04.
+A primeira tratou do lançamento em dobro de um mesmo produto quando a câmera permanecia apontada para a embalagem. Na versão testada, o sistema ignorava o código recém-lido por apenas 1 segundo; se o operador mantivesse a câmera sobre o produto por mais tempo, o item entrava duas vezes na venda. Em 29 de outubro de 2026, esse intervalo passou para 1,5 segundo na tela de venda, o que evita a duplicação sem impedir que o operador leia em sequência duas unidades do mesmo produto. Na tela de cadastro, o mesmo intervalo foi aplicado para liberar uma nova leitura do código, que antes ficava retido até a página ser recarregada.
+A segunda atendeu ao pedido de uma tela com os vencimentos próximos e foi entregue em 5 de novembro de 2026, com as seguintes alterações:
+Painel inicial (Figura 10). O sistema passou a abrir em um painel com quatro números: lotes vencidos, lotes que vencem nos próximos 7 dias, produtos abaixo do estoque mínimo e total de produtos. Cada alerta leva à lista correspondente, e atalhos grandes dão acesso ao inventário, aos vencimentos, ao estoque baixo e à venda. Os alertas, antes disponíveis apenas pela API, passam a aparecer logo ao abrir o sistema.
+Tela de vencimentos (Figura 11). Lista os lotes que ainda têm estoque, do vencimento mais próximo para o mais distante, com produto, número do lote, validade, quantidade e situação em linguagem simples (“Vence hoje”, “Vence amanhã”, “Vence em 6 dias”). O operador escolhe o prazo da consulta (3, 7, 15 ou 30 dias), e os lotes já vencidos aparecem destacados.
+Tela de estoque baixo (Figura 12). Lista os produtos com quantidade igual ou menor que o estoque mínimo, começando pelos que estão sem estoque, com atalho para a edição de cada um. A regra é a mesma usada pela API (Tabela 11).
+Estoque mínimo editável. Até então, todos os produtos tinham estoque mínimo fixo de 5 unidades. A tela de edição ganhou um campo para que o operador ajuste esse valor a cada produto.
+Coluna de próxima validade. A tela de estoque passou a mostrar a validade mais próxima de cada produto, destacada quando já passou. Esse ajuste responde à dificuldade da tarefa T6, em que a validade só aparecia na tela de edição
+Na mesma versão, o grupo incluiu o acesso por login. Cada operador tem seu próprio usuário, e o administrador do mercado pode cadastrar novos usuários, redefinir senhas e desativar contas. A medida protege os dados de vendas e de caixa de uma aplicação publicada na internet. A sessão permanece ativa por 30 dias, para que o login não acrescente uma etapa ao atendimento diário (RNF01 e RNF02).
+As alterações foram registradas no repositório Git (Tabela 9). Conforme o passo 3 da seção 2.5.6, a versão com esses ajustes foi apresentada ao proprietário, que aprovou as alterações e passou a utilizá-la no dia a dia do minimercado.
+Figura 10 – Painel inicial com os alertas de vencimento e de estoque baixo
+
+Fonte: Elaborado pelos autores (2026).
+Figura 11 – Tela de vencimentos com filtro por prazo
+
+Fonte: Elaborado pelos autores (2026).
+
+Figura 12 – Tela de produtos abaixo do estoque mínimo
+
+Fonte: Elaborado pelos autores (2026).
+
+3.3.4 Melhorias realizadas e pendentes
+Duas melhorias da versão de 17 de outubro respondem a pontos que o roteiro de teste previa como críticos: a remoção de itens durante a venda (tarefa T10) e o cadastro direto a partir da venda quando o produto não existe. Entre o MVP de setembro e a versão de 5 de novembro, as melhorias realizadas foram as da Tabela 9: estoque por lotes com validade, baixa pelo lote que vence antes, registro de vendas e de caixa, edição de produtos e lotes, remoção de itens na venda, cadastro a partir da venda, a correção das falhas da verificação funcional em 18 de outubro (seção 3.3.1) e os ajustes decorrentes do teste com o proprietário em 29 de outubro e 5 de novembro (seção 3.3.3).
+Permanecem pendentes, em ordem de prioridade:
+Migrar o banco de dados SQLite para um serviço relacional gerenciado e persistente na nuvem, uma vez que, na infraestrutura atual do Cloud Run, o banco baseado em arquivo pode perder dados a cada reinicialização da instância, comprometendo a permanência dos registros mantidos pelo proprietário;
+Desenvolver interface visual própria para consulta do saldo e histórico de caixa (RF05) diretamente no sistema web, visto que na rotina diária atual essas informações ficam restritas à API e dependem do uso da planilha integrada;
+Ajustar as configurações de ambiente para publicação comercial definitiva (desativar modo de depuração, armazenar a chave secreta de forma segura e adotar servidor WSGI de produção), garantindo estabilidade e proteção aos dados das vendas operadas no balcão;
+Acompanhar a utilização contínua do sistema no estabelecimento a fim de mensurar, a partir dos registros acumulados nas vendas diárias, a real redução nas perdas por vencimento e nas falhas de reposição de estoque.
+4 Considerações finais
+4.1 Retomada dos resultados e fundamentação
+Este trabalho partiu da seguinte questão: como conceber e implementar uma aplicação web de apoio à reposição de mercadorias e ao controle de validade que ofereça confiabilidade na gestão de dados sem aumentar o tempo das rotinas operacionais de um minimercado familiar. Os resultados indicam que a solução é viável e atende à proposta principal, desde que o sistema se limite às necessidades prioritárias do estabelecimento e aceite um pequeno acréscimo de tempo na venda em troca de um controle estruturado que hoje não existe.
+Os três objetivos específicos foram cumpridos. Na etapa exploratória, a entrevista e a observação confirmaram que o estoque não era medido, que o caixa não era controlado e que a agilidade era a condição decisiva para a adoção (seção 3.1). Na etapa descritiva, esses achados foram convertidos em cinco requisitos funcionais e quatro não funcionais (Tabela 4), orientando uma interface com poucas telas, botões grandes e leitura do código pela câmera. Na etapa explicativa, o teste com o proprietário demonstrou a viabilidade da transição do controle manual: todas as tarefas foram concluídas (sete delas sem ajuda) e a escala SUS atingiu 87,5 pontos. Quanto aos requisitos, a maioria foi plenamente atendida (RF01, RF02, RF03, RF04, RNF02, RNF03 e RNF04). No entanto, o requisito de agilidade na venda (RNF01) foi atendido apenas parcialmente, assim como o controle visual de caixa (RF05), cujas informações permanecem restritas à API e à planilha integrada.
+O resultado confirma o que a fundamentação apontava. Laudon e Laudon (2014) afirmam que sistemas para equipes enxutas precisam reduzir a sobrecarga dos operadores, e a tentativa anterior de informatização do minimercado foi abandonada justamente por fazer o contrário. Ao concentrar o registro de validade no momento da entrada e automatizar a baixa na venda, o sistema transforma em dado aquilo que antes dependia da memória, o que corresponde à coordenação entre compras, reposição e validade defendida por Ballou (2006) e Ching (2010). O cálculo da quantidade a partir dos lotes e o registro do preço praticado em cada venda seguem os princípios de integridade de Elmasri e Navathe (2018).
+Com relação ao requisito de tempo de venda (RNF01), a hipótese de que a operação pelo sistema seria tão rápida quanto na calculadora (H1) não se confirmou: o registro de cinco itens levou 45 segundos na aplicação web contra 12 segundos na calculadora de balcão. O grupo reconhece essa limitação operacional; no entanto, esse acréscimo de tempo é amplamente compensado pelos ganhos estruturais apresentados pela plataforma. Enquanto a calculadora apenas processa o total numérico da compra sem gerar histórico, o sistema realiza a identificação precisa dos itens, a baixa automática do estoque com priorização do lote de vencimento mais próximo, o registro detalhado da venda e o lançamento de entrada no caixa. Essas informações de controle de estoque, lotes e validades seriam impossíveis de obter no método manual sem exigir anotações e contagens exaustivas. Ademais, o tempo obtido (15 segundos para um item e 45 segundos para cinco itens) permanece viável para o ritmo de atendimento do balcão, e o desenvolvimento em ciclos, recomendado por Rubin (2017), permitiu incorporar rapidamente as melhorias sugeridas pelo proprietário.
+
+
+4.2 Contribuições e limitações
+A principal contribuição prática é um sistema gratuito, acessível pelo celular que o estabelecimento já possui, que substitui estimativas por registros estruturados de lotes, validades, vendas e caixa. Do ponto de vista acadêmico, o trabalho mostra que, para esse perfil de usuário, a adoção depende menos da quantidade de funções e mais do tempo que cada uma acrescenta à rotina. Mostra também que o teste com o usuário real revela problemas que os testes internos não captam, como a leitura duplicada e a dificuldade de encontrar o registro de lotes.
+O trabalho tem limitações que precisam ser consideradas:
+Fonte única de informação: os requisitos e a avaliação vieram de um único estabelecimento e de um único participante, o que impede generalizar os resultados para outros minimercados.
+Leitura pela câmera: a leitura falha em códigos pequenos, em superfícies curvas e em condições adversas de luz (Tabela 5), e a venda pelo sistema ainda é mais lenta que a calculadora.
+Escopo: o caixa é registrado, mas seu saldo e seu histórico ainda não têm tela própria (RF05), e o fiado e os fornecedores ficaram fora do MVP.
+
+4.3 Impacto na comunidade externa
+O Minimercado Gomeri participou de todas as etapas do projeto: forneceu as informações da entrevista, testou o sistema em sua própria rotina e indicou as melhorias que deveriam ser feitas. As duas sugestões registradas na Tabela 15 foram implementadas: a correção da leitura duplicada e a tela de vencimentos próximos, acompanhada do painel inicial com alertas e da tela de estoque baixo.
+A versão com esses ajustes foi apresentada ao proprietário, que aprovou as alterações e passou a utilizá-la no dia a dia do estabelecimento. Esse resultado é especialmente relevante porque a tentativa anterior de informatização havia sido abandonada pelo tempo que tomava da rotina. Desta vez, a solução foi adotada sem custo para o estabelecimento, nos aparelhos que ele já possuía.
+Com o uso diário, o minimercado passa a saber o que tem em estoque, quais lotes estão perto de vencer e quais produtos precisam ser repostos, informações que antes dependiam da memória dos dois operadores. Os próximos passos são garantir a persistência dos dados e acompanhar o uso por algumas semanas, para medir com os próprios registros do sistema o efeito sobre as perdas por vencimento e as faltas de produtos.
+
+	A versão com os novos ajustes diminuiria ainda mais a fricção para adoção da ferramenta, possibilitando seu uso diário pelo estabelecimento. O resultado positivo é especialmente relevante, pois a tentativa anterior de informatização havia sido abandonada por conflitos na rotina. Além disso, desta vez, a solução poderia ser adotada sem custos adicionais para o estabelecimento, utilizando aparelhos que este já possuía.
+	O seu uso diário, possibilitaria o minimercado a ter melhor controle de estoque e validade, antes totalmente dependentes da memória dos dois operadores. Os próximos passos seriam garantir a persistência dos dados e acompanhar o uso do sistema durante mais testes, por períodos mais longos, para medir, utilizando os registros do próprio sistema, os efeitos e potenciais melhorias sobre diminuição de perdas por vencimento e falta de produtos para venda.
 REFERÊNCIAS
-ABNT – Associação Brasileira de Normas Técnicas. NBR 14724: Informação e documentação. Trabalhos Acadêmicos - Apresentação. 3. ed. Rio de Janeiro: ABNT, 2011.
-BALLOU, R.H. Gerenciamento da cadeia de suprimentos/logística empresarial. 5ª ed. Porto Alegre/SC: Bookman, 2006. 
-BASS, Len; CLEMENTS, Paul; KAZMAN, Rick. Software architecture in practice. 4th ed. Boston: Addison-Wesley, 2021. 
-CHING, Hong Yuh. Gestão de estoques na cadeia de logística integrada: supply chain. 4. ed. São Paulo: Atlas, 2010. 
-ELMASRI, Ramez; NAVATHE, Shamkant B. Sistemas de banco de dados. 7. ed. São Paulo: Pearson Education do Brasil, 2018. 
-KOTLER, Philip; KELLER, Kevin Lane. Administração de marketing. 15. ed. São Paulo: Pearson Education do Brasil, 2018. 
+BALLOU, Ronald H. Gerenciamento da cadeia de suprimentos/logística empresarial. 5. ed. Porto Alegre: Bookman, 2006.
+BANGOR, Aaron; KORTUM, Philip; MILLER, James. Determining what individual SUS scores mean: adding an adjective rating scale. Journal of Usability Studies, v. 4, n. 3, p. 114-123, 2009.
+BASS, Len; CLEMENTS, Paul; KAZMAN, Rick. Software architecture in practice. 4th ed. Boston: Addison-Wesley, 2021.
+BROOKE, John. SUS: a “quick and dirty” usability scale. In: JORDAN, Patrick W. et al. (ed.). Usability evaluation in industry. London: Taylor & Francis, 1996. p. 189-194.
+CHING, Hong Yuh. Gestão de estoques na cadeia de logística integrada: supply chain. 4. ed. São Paulo: Atlas, 2010.
+ELMASRI, Ramez; NAVATHE, Shamkant B. Sistemas de banco de dados. 7. ed. São Paulo: Pearson Education do Brasil, 2018.
 LAUDON, Kenneth C.; LAUDON, Jane P. Sistemas de informação gerenciais. 11. ed. São Paulo: Pearson Prentice Hall, 2014.
-RUBIN, Kenneth S. Scrum essencial: um guia prático para o mais popular processo ágil. São Paulo: Ilhas Independentes, 2017. 
-SEBRAE – Serviço Brasileiro de Apoio às Micro e Pequenas Empresas. Sobrevivência das empresas no Brasil. Brasília: SEBRAE, 2020. 
-SEBRAE. Serviço Brasileiro de Apoio às Micro e Pequenas Empresas. Gestão de estoque para pequenos negócios. Brasília: SEBRAE, 2020.
-SEVERINO, A. J. Metodologia do trabalho científico. 22. ed. rev. e ampl. São Paulo: Cortez, 2002.
+RUBIN, Kenneth S. Scrum essencial: um guia prático para o mais popular processo ágil. Rio de Janeiro: Alta Books, 2017.
+SERVIÇO BRASILEIRO DE APOIO ÀS MICRO E PEQUENAS EMPRESAS (SEBRAE). Gestão de estoque para pequenos negócios. Brasília: SEBRAE, 2020a.
+SERVIÇO BRASILEIRO DE APOIO ÀS MICRO E PEQUENAS EMPRESAS (SEBRAE). Sobrevivência de empresas. Brasília: SEBRAE, 2020b.
+SEVERINO, Antônio Joaquim. Metodologia do trabalho científico. 22. ed. rev. e ampl. São Paulo: Cortez, 2002.
 SOMMERVILLE, Ian. Engenharia de software. 10. ed. São Paulo: Pearson Education do Brasil, 2019.
 WAZLAWICK, Raul Sidnei. Metodologia de pesquisa para ciência da computação. 2. ed. Rio de Janeiro: Elsevier, 2014.
+WORLD WIDE WEB CONSORTIUM (W3C). Web Content Accessibility Guidelines (WCAG) 2.2. [S. l.]: W3C, 2023. Disponível em: https://www.w3.org/TR/WCAG22/. Acesso em: 17 out. 2026.
+ZEBRA TECHNOLOGIES. Is camera scanning negatively affecting your business? An independent 3rd party’s comparative analysis of barcode scanning methodologies. [S. l.]: Zebra Technologies, 2022. White paper. Disponível em: https://prodc-www.zebra.com/content/dam/zebra_dam/en/white-paper/mobile-computers-white-paper-consumer-vs-enterprise-scanning-en-us.pdf. Acesso em: 5 nov. 2026.
 
+APÊNDICES
+APÊNDICE A – Roteiro dos testes de usabilidade com o proprietário
+Este roteiro permite repetir a mesma sessão de teste em diferentes versões do sistema, comparando os resultados. Ele cobre preparação, condução, tarefas, registro e análise.
+A.1 Objetivo e hipóteses
+O objetivo é verificar se o MVP pode ser usado na rotina real do Minimercado Gomeri sem tomar mais tempo do que o método atual. Cada hipótese vem de uma resposta da entrevista:
+Hipótese
+Origem na entrevista
+Como será verificada
+H1 – Uma venda de cinco itens pelo sistema não leva mais tempo do que na calculadora
+Perguntas 11, 13 e 14
+Comparação dos tempos das tarefas T8 e T9
+H2 – O proprietário cadastra produtos e registra lotes sem ajuda
+Perguntas 4 e 18
+Taxa de conclusão sem ajuda nas tarefas T2 a T5
+H3 – A leitura pela câmera funciona com os produtos reais da loja
+Testes internos (Tabela 5)
+Tentativas de leitura por produto nas tarefas T2, T4, T7 e T8
+H4 – As mensagens do sistema são compreendidas
+Pergunta 12
+Reação à mensagem na tarefa T11
+
+A.2 Participantes e papéis
+Pessoa
+Papel na sessão
+Proprietário
+Participante: realiza as tarefas e comenta em voz alta
+Moderador (1 integrante)
+Lê os cenários, conduz a sessão, cronometra e não indica o caminho na tela
+Observador (1 integrante)
+Preenche a ficha de registro (A.8) e anota falas
+
+A.3 Local, momento e materiais
+Local: o balcão do minimercado, onde o sistema seria usado.
+Momento: horário de menor movimento, indicado pelo proprietário. Se chegar um cliente, a tarefa é pausada e o cronômetro parado.
+Duração: cerca de 75 minutos.
+Aparelho: o celular do próprio proprietário, na rede de internet da loja.
+Materiais: produtos do kit (A.4), calculadora de balcão, duas fichas de registro impressas, cronômetro, cópia do questionário (A.9).
+A.4 Preparação antes da visita
+☐ Publicar a versão a ser testada e não fazer novas implantações até o fim da sessão. No Cloud Run, os dados em SQLite podem ser apagados a cada implantação ou reinício.
+☐ Cadastrar previamente os produtos marcados como “pré-cadastrado” nA Tabela abaixo, com lotes e validades.
+☐ Deixar o produto P10 cadastrado com estoque zero.
+☐ Confirmar que P1 está na base Open Food Facts e que P2 não está, lendo os códigos antes da visita.
+☐ Fazer um teste piloto completo com um integrante que não programou o sistema, para ajustar tempos e cenários.
+☐ Combinar com o proprietário a data, o horário e o uso do celular dele.
+Kit de produtos, montado com itens vendidos na própria loja:
+Item
+Tipo de produto
+Situação no sistema
+Usado em
+P1
+Produto industrializado comum, presente na base Open Food Facts
+Não cadastrado
+T2
+P2
+Produto regional ou de marca pequena, ausente da base
+Não cadastrado
+T3
+P3
+Lata ou frasco com código pequeno em superfície curva
+Não cadastrado
+T4
+P4
+Produto com lote e validade impressos na caixa
+Pré-cadastrado com um lote
+T5 e T6
+P5 a P9
+Cinco produtos de giro rápido (cesta A)
+Pré-cadastrados com estoque
+T7 e T8
+P5' a P9'
+Cinco produtos equivalentes (cesta B)
+Não precisam estar no sistema
+T9
+P10
+Produto qualquer
+Pré-cadastrado com estoque zero
+T11
+
+A.5 Roteiro da sessão
+Tempo
+Etapa
+O que acontece
+0–5 min
+Abertura
+Apresentação, explicação do objetivo e consentimento verbal
+5–20 min
+Observação presencial
+O grupo observa o atendimento normal, sem interferir, e cronometra até três vendas reais feitas na calculadora (tempo e número de itens)
+20–25 min
+Aquecimento
+O moderador pede que o proprietário fale o que está pensando enquanto usa o celular
+25–60 min
+Tarefas T1 a T12
+Execução das tarefas (A.7), com registro na ficha (A.8)
+60–68 min
+Questionário
+Aplicação da escala SUS (A.9)
+68–75 min
+Conversa final
+Perguntas abertas e agradecimento
+
+
+Texto de abertura, lido pelo moderador:
+“Obrigado por nos receber. Hoje queremos ver se o sistema que estamos fazendo funciona na sua rotina. Quem está sendo testado é o sistema, não o senhor: se algo der errado, é porque precisamos melhorar. Vamos pedir algumas tarefas do dia a dia, e gostaríamos que o senhor fosse falando o que está pensando. Podemos começar?”
+Regras para o moderador:
+Ler o cenário exatamente como está escrito, sem usar os nomes dos botões;
+Não indicar onde tocar; se o participante perguntar, devolver: “o que o senhor faria?”;
+Dar ajuda apenas se ele ficar parado por mais de 2 minutos ou pedir ajuda duas vezes: primeiro uma dica geral (“procure uma opção para adicionar”), depois, se necessário, indicar a tela; nesse caso, registrar a tarefa como concluída com ajuda;
+Não defender nem explicar o sistema durante as tarefas; as explicações ficam para a conversa final.
+A.6 Métricas
+Métrica
+Como registrar
+Conclusão
+S = concluída sozinho; A = concluída com ajuda; N = não concluída
+Tempo
+Do fim da leitura do cenário até a tela de confirmação, em segundos
+Erros
+Toques errados, campos preenchidos errado, voltas de tela
+Tentativas de leitura
+Quantas vezes apontou a câmera até o código ser lido
+Facilidade
+Após cada tarefa: “De 1 (muito difícil) a 7 (muito fácil), como foi?”
+Falas
+Frases que mostram dúvida, irritação ou satisfação, anotadas literalmente
+
+A.7 Tarefas
+T1 – Abrir o sistema
+Cenário lido: “Imagine que o senhor acabou de abrir a loja. Abra o sistema no seu celular.”
+Pré-condição: atalho do sistema na tela inicial do celular, ou endereço enviado por mensagem.
+Caminho esperado: tocar no atalho ou no link e chegar à tela de estoque.
+Concluída quando: a tela de estoque aparece.
+Observar: se o participante encontra o atalho; tempo de carregamento.
+T2 – Cadastrar produto encontrado na base
+Cenário lido: “Chegou este produto do fornecedor [entregar P1, 6 unidades, validade impressa]. Coloque ele no sistema.”
+Caminho esperado: Estoque → adicionar produto → ler o código pela câmera → conferir nome e marca preenchidos → informar preço de venda, lote, validade (DD/MM/AAAA), quantidade e preço de compra → cadastrar.
+Concluída quando: aparece a mensagem de produto cadastrado e P1 surge na lista com 6 unidades.
+Observar: se confere o nome preenchido automaticamente; dificuldade com o formato da data; se encontra lote e validade na embalagem; campos deixados em branco.
+Pergunta após: “Fazer isso a cada produto que chega seria possível na sua rotina?”
+T3 – Cadastrar produto que a base não reconhece
+Cenário lido: “Agora cadastre este outro [entregar P2].”
+Caminho esperado: igual à T2, mas digitando nome e marca, que não são preenchidos.
+Concluída quando: P2 aparece na lista com nome correto.
+Observar: se percebe que o nome não foi preenchido; se acha que o sistema falhou.
+T4 – Cadastrar produto com código difícil de ler
+Cenário lido: “Cadastre também este [entregar P3].”
+Caminho esperado: tentar a câmera e, se não ler, digitar o código no campo.
+Concluída quando: P3 aparece na lista.
+Observar: número de tentativas de leitura; se descobre sozinho que pode digitar o código; tempo até desistir da câmera.
+T5 – Registrar novo lote de produto já cadastrado
+Cenário lido: “Chegou mais uma caixa deste produto [entregar P4, 12 unidades, outra validade]. Registre a chegada.”
+Caminho esperado: Estoque → editar P4 → preencher novo lote com validade, quantidade e preço de compra → adicionar lote.
+Concluída quando: P4 passa a ter dois lotes e a quantidade total aumenta em 12.
+Observar: se tenta cadastrar P4 de novo como produto novo (o sistema recusa código repetido); se entende a diferença entre editar e adicionar lote.
+T6 – Consultar estoque e validade
+Cenário lido: “Um cliente perguntou se ainda tem [nome de P4]. Quantas unidades há e quando vence a mais antiga?”
+Caminho esperado: Estoque → localizar P4 na lista (quantidade) → abrir a edição para ver as validades dos lotes.
+Concluída quando: o participante diz a quantidade e a data corretas.
+Observar: se percebe que a validade só aparece dentro da edição; se sente falta de ver a validade na lista.
+T7 – Venda de um item
+Cenário lido: “Um cliente vai levar este produto [entregar P5]. Faça a venda.”
+Caminho esperado: Scanner → ler P5 → conferir o total → finalizar venda.
+Concluída quando: aparece a mensagem de venda finalizada.
+Observar: tempo total; se confere o valor antes de finalizar.
+T8 – Venda de cinco itens pelo sistema (cesta A)
+Cenário lido: “Agora um cliente trouxe estas compras [entregar P5 a P9, sendo duas unidades de P6]. Faça a venda e diga o total.”
+Caminho esperado: ler cada item, ajustando a quantidade de P6 para 2 (campo de quantidade ou leitura duas vezes) → conferir o total → finalizar.
+Concluída quando: a venda é finalizada com o total correto.
+Observar: como lida com a quantidade 2; tempo total; tentativas de leitura por item.
+T9 – A mesma venda na calculadora (cesta B)
+Cenário lido: “Agora faça esta outra venda do jeito que o senhor faz hoje [entregar P5' a P9', duas unidades de P6'].”
+Concluída quando: o participante diz o total.
+Observar: tempo total, para comparar com a T8. Na repetição do teste em versões futuras, inverter a ordem de T8 e T9, para reduzir o efeito de aprendizado.
+T10 – Corrigir item lançado por engano
+Cenário lido: “Na hora de passar as compras, o senhor leu um produto que o cliente desistiu de levar. Tire ele da venda.” (Ler P7 numa nova venda antes do cenário.)
+Resultado esperado: tocar no botão de remoção (ícone de “X”) ao lado do item P7 na lista de produtos e confirmar a exclusão.
+Observar: se o participante encontra facilmente o botão de remoção; se compreende a mensagem de confirmação; tempo necessário para remover o item.
+T11 – Tentar vender produto sem estoque
+Cenário lido: “Faça a venda deste produto [entregar P10].”
+Resultado esperado: o sistema avisa que o produto está sem estoque.
+Observar: se entende a mensagem; o que faria na vida real (vender assim mesmo?). Essa resposta indica se o sistema deve permitir vender sem estoque registrado.
+T12 – Alterar preço de venda
+Cenário lido: “O preço de [nome de P5] subiu 50 centavos. Atualize no sistema.”
+Caminho esperado: Estoque → editar P5 → alterar o preço de venda → salvar.
+Concluída quando: a lista mostra o novo preço.
+A.8 Ficha de registro
+Data: 22/10/2026   Versão testada: 18/10/2026   Observador: Vinicius Marques
+Tarefa
+Conclusão (S/A/N)
+Tempo (s)
+Erros
+Tentativas de leitura
+Facilidade (1–7)
+Observações e falas
+T1
+s
+5
+0
+–
+7
+–
+T2
+s
+51
+0
+1
+7
+–
+T3
+s
+80
+0
+1
+7
+Bom demais!
+T4
+a
+75
+0
+3
+7
+–
+T5
+a
+70
+0
+–
+7
+–
+T6
+a
+40
+0
+–
+7
+–
+T7
+s
+15
+0
+1
+7
+–
+T8
+s
+45
+0
+7
+7
+–
+T9
+s
+12
+–
+–
+7
+–
+T10
+a
+30
+3
+–
+5
+O produto lê 2x se ficar muito tempo apontado na câmera, uma correção a ser feita
+T11
+s
+5
+0
+1
+7
+–
+T12
+a
+10
+0
+–
+7
+–
+
+Vendas reais observadas na calculadora (etapa de observação):
+Venda
+Nº de itens
+Tempo (s)
+Observações
+1
+6
+12
+–
+2
+1
+1
+–
+3
+10
+25
+Usando produto com poucas vendas
+
+
+A.9 Questionário SUS
+O participante indica quanto concorda com cada frase, de 1 (discordo totalmente) a 5 (concordo totalmente). O moderador pode ler as frases em voz alta.
+Nº
+Afirmação
+1
+2
+3
+4
+5
+1
+Eu acho que gostaria de usar este sistema com frequência.
+
+
+
+
+
+
+x
+
+
+2
+Achei o sistema mais complicado do que precisava ser.
+
+
+x
+
+
+
+
+
+
+3
+Achei o sistema fácil de usar.
+
+
+
+
+
+
+
+
+x
+4
+Acho que precisaria da ajuda de alguém que entende de tecnologia para usar este sistema.
+x
+
+
+
+
+
+
+
+
+5
+Achei que as funções do sistema estão bem organizadas.
+
+
+
+
+
+
+x
+
+
+6
+Achei o sistema confuso em alguns pontos.
+
+
+x
+
+
+
+
+
+
+7
+Imagino que a maioria das pessoas aprenderia a usar este sistema rapidamente.
+
+
+
+
+
+
+x
+
+
+8
+Achei o sistema trabalhoso de usar.
+x
+
+
+
+
+
+
+
+
+9
+Me senti seguro usando o sistema.
+
+
+
+
+
+
+
+
+x
+10
+Precisei aprender muita coisa antes de conseguir usar o sistema.
+x
+
+
+
+
+
+
+
+
+
+
+Cálculo da pontuação (BROOKE, 1996): Nas frases ímpares, subtrair 1 da resposta; nas pares, subtrair a resposta de 5. Somar os dez valores e multiplicar por 2,5, obtendo uma nota de 0 a 100. A nota serve para comparar versões do sistema testadas com o mesmo roteiro.
+A.10 Cuidados éticos
+O consentimento é pedido verbalmente antes do início, o Termo de imagem é assinado e o participante pode interromper a qualquer momento.
+Os produtos usados nas vendas de teste não são retirados do estoque real, e os registros de teste são apagados do sistema ao final.
+APÊNDICE B – Roteiro e respostas da entrevista
+Respostas registradas pelo grupo durante a entrevista com o proprietário do Minimercado Gomeri. A coluna “Eixo” indica a categoria usada na análise (Tabela 3).
+
+Nº
+Pergunta
+Resposta
+Eixo
+1
+Como você controla seu estoque atualmente?
+O controle é feito apenas de forma visual, “no olhômetro”, sem planilhas ou sistemas.
+Estoque e reposição
+2
+Como você administra a entrada e saída de caixa atualmente?
+Não há administração formal. O dinheiro das vendas do dia paga as contas imediatas; se sobra, é o lucro; se não, arcam com a situação.
+Caixa e finanças
+3
+Como é um dia típico de trabalho, do abrir ao fechar?
+A rotina é cansativa e desgastante; está no negócio há 12 anos e acabou se adaptando.
+Rotina e equipe
+4
+Quantas pessoas trabalham com você? Elas também mexem no caixa/estoque?
+Duas pessoas, sem divisão fixa: ambas cuidam do caixa e da reposição.
+Rotina e equipe
+5
+Há quanto tempo você é responsável pela parte financeira?
+Não é a pessoa responsável pela parte financeira do mercado.
+Caixa e finanças
+6
+Quais tarefas administrativas você faz fora do horário de funcionamento?
+Nenhuma; não leva trabalho para casa.
+Rotina e equipe
+7
+Ao final do dia/semana/mês, como você sabe se teve lucro ou prejuízo?
+Não faz o cálculo; considera que vai bem quando consegue manter as contas essenciais em dia, como água e energia.
+Caixa e finanças
+8
+Você vende fiado? Como controla quem deve o quê?
+Sim, para clientes conhecidos e moradores antigos; o controle é feito em caderno.
+Caixa e finanças
+9
+Como paga fornecedores? Como sabe quanto deve a cada um?
+Boletos de fornecedores maiores ficam cadastrados no banco digital, que avisa os vencimentos; os menores passam semanalmente e são pagos na entrega, em dinheiro ou Pix.
+Caixa e finanças
+10
+Já teve diferença de caixa sem saber explicar por quê?
+Sem sistema, é difícil identificar; um dia com dinheiro abaixo do esperado é visto como um dia de movimento fraco.
+Caixa e finanças
+11
+O que fez você desistir do sistema que tentou usar antes?
+Praticidade: a calculadora de balcão se mostrou mais ágil e menos trabalhosa do que alimentar um sistema.
+Experiência com tecnologia
+12
+Teve alguma experiência ruim com computador/sistema?
+Não; não desconfia da tecnologia. A desistência ocorreu porque o método manual se encaixou melhor na pressa do dia a dia.
+Experiência com tecnologia
+13
+O que te preocuparia em trocar a calculadora por outro método?
+O tempo gasto com registros e baixas de estoque; hoje o atendimento com a calculadora é ágil.
+Experiência com tecnologia
+14
+O que faria você confiar em um sistema novo?
+Provar que não toma mais tempo da rotina do que a forma atual; precisa ser extremamente prático.
+Experiência com tecnologia
+15
+O que você faz hoje que gostaria de não precisar fazer mais?
+Lidar com as exigências e a rotina exaustiva de administrar o comércio.
+Rotina e equipe
+16
+Tem acesso à internet?
+Sim.
+Infraestrutura e custos
+17
+Quais seriam suas restrições caso fosse preciso pagar pelo serviço?
+Não assumiria mensalidades nem taxas iniciais, pois não vê necessidade real de automação no momento.
+Infraestrutura e custos
+18
+A caixa dos produtos vem com lote e validade ou apenas os produtos?
+Depende do fornecedor, mas na maioria das vezes vem tanto na caixa fechada quanto na embalagem individual.
+Estoque e reposição
+
+Caracterização do estabelecimento
+
+Item
+Resposta
+Nome
+Minimercado Gomeri
+Tempo de existência
+22 anos
+Número de funcionários
+2
+Divisão de funções
+Não há divisão formal; todos fazem um pouco de cada atividade
+Quantidade de produtos à venda ou em estoque
+Não há levantamento
+Quantidade de clientes
+Varia muito; não souberam informar (resposta ambígua sobre controle de fluxo, ver seção 3.1)
+Perfil dos clientes e das vendas
+Perfil de comunidade local em bairro periférico, que atende à públicos de diversas idades nas quais buscam por praticidade e necessidades imediatas
+Rotina diária
+Como principais focos de rotina, as atividades são: Atendimento ao cliente e organização do estabelecimento
+Aquisição de produtos
+Baseada nos pedidos dos clientes; buscam fornecedores com boa relação de preço e prazo
+
+
+
+APÊNDICE C – Termo de autorização de uso de imagem
+
+APÊNDICE D – Vídeo completo dos testes realizados
+Pode ser acessado pelo link abaixo:
+https://drive.google.com/file/d/1XqZfrVJ6IkUGJxM5YO-c19XIihHH-cjo/view
+APÊNDICE E  – Repositório
+Pode ser acessado pelo link abaixo:
+https://github.com/RenatoHT/PI-2
+
+
+fazer a "Descrição do protótipo e análise da sua viabilidade (Até 250 palavras)"
